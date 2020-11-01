@@ -1,0 +1,27 @@
+.as{
+    position: relative;
+}
+
+#ass{
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    top: 1%;
+}
+
+#location1{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+#location2{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.card .card-content {
+    padding: 7px;
+    border-radius: 0 0 2px 2px;
+    border-left: 5px solid rgb(255, 206, 50);
+}
+

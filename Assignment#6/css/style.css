@@ -1,0 +1,51 @@
+.abr {
+    height:  20px;
+    background-color: blue;
+}
+.abr1 {
+    height:  20px;
+    background-color:red;
+}
+.test {
+    border: 1px solid red;
+    height: 400px;
+}
+.test1 {
+    border: 1px solid blue;
+}
+
+.xbox{
+    border: 5x solid black;
+}
+.xrow{
+    border: 10x solid yellow;
+
+}
+.adiv{
+     height:  60px;
+     background-color: aliceblue;
+}
+.bdiv{
+    height:  60px;
+    background-color: chartreuse;
+}
+.cdiv{
+    height:  60px;
+    background-color: darkblue;
+}
+.ddiv{
+    height:  60px;
+    background-color: deeppink;
+}
+.ediv{
+    height:  60px;
+    background-color: darkturquoise;
+    
+}
+.fdiv{
+    background-color: indianred;
+}
+.as{
+    display : inline ; margin-left: 60px;
+    height: 200px;
+}

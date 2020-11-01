@@ -1,0 +1,41 @@
+#head{
+    height: 60px;
+    background-color: white;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#logo{
+    display: inline-block;
+}
+
+ul{
+    list-style: none;
+    display: inline-block;
+}
+ul li{
+    display: inline;
+    font-weight: bold;
+}
+
+.list{
+    margin-left: 30px;
+}
+
+#right_header{
+    list-style: none;
+    display: inline-block;
+    margin-left: 24%;
+    padding: 0;
+    
+
+    
+}
+ol li{
+    display: inline;
+    margin-left:  2px;
+    display: inline;
+    margin-left: 8px;
+}

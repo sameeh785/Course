@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        @keyframes myAnimation {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #road:hover+div {
+            left: 80%;
+        }
+
+        /* #car:hover {
+            left: 80%;
+            /* opacity: 0.2; */
+        /* } */
+
+        #car {
+            position: absolute;
+            top: 5%;
+            width: 250px;
+            left: 0;
+            transition: left 3s linear 0s
+                /* , opacity 3s linear 0s; */
+
+        }
+
+        #road {
+            width: 100%;
+        }
+
+        #w1 {
+            /* animation:myAnimation 3s linear 0s; */
+            width: 36px;
+            position: absolute;
+            top: 56px;
+            left: 38px;
+
+        }
+
+        #road:hover+div #w2,
+        #road:hover+div #w1 {
+            animation: myAnimation 3s linear 0s;
+        }
+
+        #w2 {
+            /* animation:myAnimation 3s linear 0s; */
+
+            width: 36px;
+            position: absolute;
+            top: 56px;
+            left: 181px;
+
+        }
+
+        #car-body {
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <img id="road" src="myroad.jpg" alt="">
+
+    <div id="car">
+        <img id="car-body" src="my-car.png" alt="">
+        <img id="w1" src="wheel.png" alt="">
+        <img id="w2" src="wheel.png" alt="">
+    </div>
+
+</body>
+
+</html>

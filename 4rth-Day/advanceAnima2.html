@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        @keyframes myAnimation {
+
+            0% {
+                background-color: green;
+                margin-left: 0;
+                transform: rotate(40deg);
+            }
+
+            50% {
+                background-color: blue;
+                margin-left: 250px;
+                transform: rotate(-40deg);
+            }
+
+            70% {
+                background-color: magenta;
+                margin-left: 350px;
+                transform: skewX(40deg);
+            }
+
+            100% {
+
+                background-color: red;
+                margin-left: 500px;
+            }
+
+
+        }
+
+        #parent1 {
+            color: red !important;
+            width: 100px;
+            height: 100px;
+
+            animation: myAnimation 2s linear 0s;
+        }
+
+        /* #parent1:hover {
+            background-color: red;
+        } */
+
+        /* font-size:5em; */
+    </style>
+
+</head>
+
+<body>
+
+    <div id="some">
+        <div id="parent1" style="color:blue;border: 2px solid magenta">
+            Apple
+        </div>
+    </div>
+       
+        <div  style="color:blue;border: 2px solid magenta; margin-left: 500px; width: 30px;">
+            Apple
+        
+    </div>
+</body>
+
+</html>

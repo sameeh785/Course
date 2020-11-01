@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #a1{
+            width: 100vw ;
+            position: relative;
+            animation: sami 4s linear 0s;
+            z-index: 1;
+            
+
+        }
+        @keyframes sami {
+            from{
+                margin-left: 0px;
+            }
+            to{
+                margin-left: 950px;
+            }
+            
+        }
+        #a2{
+            width: 500px;
+           
+            
+        }
+        #a3{
+          
+            position: absolute;
+            width: 69px;
+            /* height: 110px; */
+            top: 53%;
+            left: 6%;
+            animation: sami2 1s linear 0s;
+            animation-iteration-count: 4;
+           }
+
+
+        #a4{
+            position: absolute;
+            width: 69px;
+            /* height: 110px; */
+            top: 53%;
+            left: 26.5%;
+            animation: sami2 1s linear 0s;
+            animation-iteration-count: 4;
+        }
+      @keyframes sami2 {
+            from {
+               transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+              
+            }
+      }
+        
+    </style>
+</head>
+<body>
+<div id="a1"> 
+     <img  id="a3" src="wheel.png" alt="">
+     <img  id="a4" src="wheel.png" alt="">  
+    <img  id="a2" src="./my-car.png" alt="">  
+  
+ </div> 
+    <img src="./myroad.jpg" style="transform: rotateX(60deg); position: absolute; top: 30px; z-index: 0; width: 100vw;">
+ 
+</body>
+</html>
