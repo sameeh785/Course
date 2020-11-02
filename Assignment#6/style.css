@@ -6,6 +6,10 @@ body{
     margin: 0;
     padding: 0;
 }
+h1 h2 h3 h4 h5 h6{
+    padding: 0;
+    margin: 0;
+}
 
 #logo{
     display: inline-block;
@@ -27,7 +31,7 @@ ul li{
 #right_header{
     list-style: none;
     display: inline-block;
-    margin-left: 24%;
+    margin-left: 26%;
     padding: 0;
     
 
@@ -38,4 +42,45 @@ ol li{
     margin-left:  2px;
     display: inline;
     margin-left: 8px;
+}
+#ds1{
+    position: relative;
+}
+
+#ds{
+  
+    width: 41%;
+    color: white;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    
+}
+.flex{
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+.icon{
+    width:400px;
+    height: 270px;
+    background-color: white;
+
+}
+.icon:nth-child(2){
+    margin-left: 15px;
+}
+.icon:nth-child(3){
+    margin-left: 15px;
+}
+.p1{
+    width: 100%;
+    height: 120px;
+}
+.p2{
+    margin-top: 14PX;
 }
