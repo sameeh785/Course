@@ -6,20 +6,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #logo{
     margin-left: 10%;
 }
@@ -80,19 +66,19 @@ ul li{
 #a2{
     grid-column:  span 4;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
     background-color: aquamarine;
 }
 #a3{
     grid-column:  span 4;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
     background-color: black;
 }
 #a4{
     grid-column:  span 4;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
     background-color: chartreuse;
 }
 #a5{
@@ -103,19 +89,19 @@ ul li{
 #a6{
     grid-column:  span 4;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
     background-color: darkseagreen;
 }
 #a7{
     grid-column:  span 4;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
     background-color: darkred;
 }
 #a8{
     grid-column:  span 4;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 5px;
     background-color: darkslategrey;
 }
 #a9{
