@@ -1,0 +1,81 @@
+<div>
+
+    <section>
+
+    <header>
+
+        <article>
+            <footer>
+
+
+                <b>
+
+                    <label for="">
+
+                        <header>
+
+                            <aside id="code">
+                                some code in here
+                            </aside>
+
+
+                        </header>
+
+                    </label>
+
+                </b>
+
+            </footer>
+        </article>
+
+    </header>
+
+    </section>
+
+</div>
+
+
+<script>
+
+
+    let tag = code;
+
+    do {
+
+        tag = tag.parentNode;
+
+    } while (tag != null && tag.nodeName != "SECTION")
+
+    if (tag == null) {
+        console.log("Sorry g");
+    }else{
+        console.log(tag);
+    }
+
+    // let tag = code;
+
+    // for (let i = 0; tag.nodeName != "SECTION"; i++) {
+
+    //     tag = tag.parentNode;
+
+    // }
+
+    // console.log(tag);
+
+    // function findNode(tag) {
+
+
+    //         if (tag.nodeName != "SECTION") {
+    //             return findNode(tag.parentNode);
+    //         } else {
+    //             return tag;
+    //         }
+
+
+    // }
+
+    // let myTag = findNode(code);
+    // console.log(myTag);
+
+
+</script>

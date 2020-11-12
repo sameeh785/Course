@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        #slider {
+            width: 600px;
+            height: 400px;
+            border: 1px solid blue;
+            position: relative;
+        }
+
+        #buttonContainer img {
+            width: 50px;
+        }
+
+        #buttonContainer img:nth-child(2) {
+            transform: rotate(180deg);
+            width: 50px;
+            float: right;
+        }
+
+        #buttonContainer {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            width: 100%;
+            height: fit-content;
+        }
+
+        #canvas {
+            height: 100%;
+
+        }
+
+        #picContainer {
+            text-align: center;
+            height: 100%;
+        }
+    </style>
+
+    <script>
+
+        let totalSlides = 6;
+        let sliderNumber = 1;
+
+        function showNextSlide() {
+
+            if (sliderNumber < totalSlides) {
+                sliderNumber++;
+            } else {
+                sliderNumber = 1;
+            }
+
+            canvas.src = sliderNumber + ".jpg";
+            slideNumber.innerHTML = "<h3>" + sliderNumber + "</h3>";
+        }
+
+        function showPrevSlide() {
+
+            if (sliderNumber >= 2) {
+                sliderNumber--;
+            } else {
+                sliderNumber = 6;
+            }
+            canvas.src = sliderNumber + ".jpg";
+
+
+            slideNumber.innerHTML = sliderNumber;
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <div id="slider">
+
+        <div id="picContainer">
+            <img id="canvas" src="1.jpg" alt="">
+        </div>
+
+        <h1 id="slideNumber">
+      1
+        </h1>
+
+        <div id="buttonContainer">
+            <img onclick="showPrevSlide()" src="right.jpg" />
+            <img onclick="showNextSlide()" src="right.jpg" />
+        </div>
+
+    </div>
+
+</body>
+
+</html>

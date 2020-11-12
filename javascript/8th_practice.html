@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body id="bod">
+    <script>
+       
+          
+        bod.onmousemove = function (e) {
+
+console.log(e.clientX);
+
+let halfPoint = window.innerWidth / 2;
+let halfheight = window.innerHeight/2;
+
+if(e.clientY < halfheight){
+if(e.clientX > halfPoint){
+    bod.style.background = "blue";
+}else{
+    bod.style.background = "green";
+
+}
+}
+else{
+    if(e.clientX > halfPoint){
+    bod.style.background = "yellow";
+}else{
+    bod.style.background = "red";
+
+}
+
+}
+
+}
+      
+
+
+
+        // bod.onmousemove = function(e){
+        //     let halfPoint =window.innerWidth / 4;
+        //     let i = halfPoint + halfPoint;
+        //     let j = i + halfPoint;
+    
+        //     if(e.clientX < halfPoint){
+        //         bod.style.background = "red";
+               
+        //     }else if(e.clientX > halfPoint && e.clientX <= i){
+        //         bod.style.background = "brown";
+        //     }
+        //     else if(e.clientX > i && e.clientX <= j){
+        //         bod.style.background = "yellow";
+        //     }
+        //     else{
+               
+        //         bod.style.background = "green";
+
+        //     }
+        // }
+
+    </script>
+</body>
+</html>

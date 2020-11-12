@@ -1,0 +1,258 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            ;
+        }
+
+        div {
+            display: inline-block;
+            width: 45vw;
+            height: 49vh;
+            border: 1px solid red;
+
+        }
+    </style>
+
+
+
+</head>
+
+<body id="myBody">
+
+    <!-- <button id="apple" onclick="createFruit(event)">Apple</button>
+    <button id="banana" onclick="createFruit(event)">Banana</button> -->
+
+    <!-- <div id="e1">
+
+    </div>
+
+    <div id="e2">
+
+    </div> -->
+
+
+    <script>
+
+        myBody.onmousemove = function (e) {
+
+            console.log(e.clientX);
+
+            let halfPoint = window.innerWidth / 2;
+
+            if(e.clientX > halfPoint){
+                myBody.style.background = "blue";
+            }else{
+                myBody.style.background = "green";
+
+            }
+
+        }
+
+        function createFruit(event) {
+
+            console.log(event);
+
+            let fruit = document.createElement('img');
+            basket.appendChild(fruit);
+
+            fruit.onclick = function () {
+
+                fruit.remove();
+            }
+
+            if (event.target.id == 'apple') {
+                fruit.src = "1.jpg";
+            } else {
+                fruit.src = "2.jpg";
+            }
+
+
+
+        }
+
+    // some.onmouseover = function () {
+
+    // if (some.style.border == "2px solid red") {
+    // some.style.border = "";
+    // } else {
+    // some.style.border = "2px solid red";
+    // }
+    // }
+
+    // some.onmouseout = function(){
+    // some.style.border = "";
+    // }
+
+
+    // function sayHello() {
+    // alert("say hello");
+    // }
+
+
+    // some.onclick = sayHello;
+
+
+    // function helloImage() {
+    // sayHello()
+    // alert("hello g");
+    // // return helloImage;
+    // }
+
+
+    // some.onclick = helloImage;
+
+
+    </script>
+
+
+    <!-- <form onsubmit="sendMyForm()" action="">
+
+        <input type="text">
+        <button>Signup</button>
+
+    </form> -->
+
+</body>
+
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            ;
+        }
+
+        div {
+            display: inline-block;
+            width: 45vw;
+            height: 49vh;
+            border: 1px solid red;
+
+        }
+    </style>
+
+
+
+</head>
+
+<body id="myBody">
+
+    <!-- <button id="apple" onclick="createFruit(event)">Apple</button>
+    <button id="banana" onclick="createFruit(event)">Banana</button> -->
+
+    <!-- <div id="e1">
+
+    </div>
+
+    <div id="e2">
+
+    </div> -->
+
+
+    <script>
+
+        myBody.onmousemove = function (e) {
+
+            console.log(e.clientX);
+
+            let halfPoint = window.innerWidth / 2;
+
+            if(e.clientX > halfPoint){
+                myBody.style.background = "blue";
+            }else{
+                myBody.style.background = "green";
+
+            }
+
+        }
+
+        function createFruit(event) {
+
+            console.log(event);
+
+            let fruit = document.createElement('img');
+            basket.appendChild(fruit);
+
+            fruit.onclick = function () {
+
+                fruit.remove();
+            }
+
+            if (event.target.id == 'apple') {
+                fruit.src = "1.jpg";
+            } else {
+                fruit.src = "2.jpg";
+            }
+
+
+
+        }
+
+    // some.onmouseover = function () {
+
+    // if (some.style.border == "2px solid red") {
+    // some.style.border = "";
+    // } else {
+    // some.style.border = "2px solid red";
+    // }
+    // }
+
+    // some.onmouseout = function(){
+    // some.style.border = "";
+    // }
+
+
+    // function sayHello() {
+    // alert("say hello");
+    // }
+
+
+    // some.onclick = sayHello;
+
+
+    // function helloImage() {
+    // sayHello()
+    // alert("hello g");
+    // // return helloImage;
+    // }
+
+
+    // some.onclick = helloImage;
+
+
+    </script>
+
+
+    <!-- <form onsubmit="sendMyForm()" action="">
+
+        <input type="text">
+        <button>Signup</button>
+
+    </form> -->
+
+</body>
+
+</html>

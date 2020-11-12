@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="first(event)" id="apple">apple</button>
+    <button onclick="first(event)" id="banana">banana</button>
+    <br>
+
+   
+    
+    <div style="display: inline-block; vertical-align: top;" id="sami"></div>
+
+    <div style="display: inline-block; vertical-align: top;" id="sami2"></div>
+    <script>
+
+function first(){
+           
+             if(  event.target.id == "apple"){
+          let v = document.createElement('img');
+          v.src ="./th.jpg"
+          sami.appendChild(v);
+         let u = document.createElement('br')
+         sami.appendChild(u);
+             }
+             if(event.target.id == "banana"){
+                let v = document.createElement('img');
+          v.src ="./banana.jpg"
+          v.style.width = "200px"
+          sami2.appendChild(v);
+         let u = document.createElement('br')
+         sami2.appendChild(u);
+             }
+      
+let k = document.getElementsByTagName('img')[0];
+k.onclick = rem;
+      }
+function rem(e){
+    e.target.remove();
+
+}
+    </script>
+</body>
+</html>

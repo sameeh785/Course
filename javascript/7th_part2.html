@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        img {
+            width: 100px;
+        }
+
+        .styled {
+            border: 1px solid red;
+            opacity: 0.5
+        }
+    </style>
+
+
+
+</head>
+
+<body id="myBody">
+
+    <button id="hBTN">Hello</button>
+    <img id="some" src="6.jpg"  alt="">
+
+    <script>
+
+
+        function sayHello() {
+            alert("hello ji");
+        }
+
+        some.onclick = sayHello;
+
+
+        // drawImage(6);
+
+        // let myTags = document.getElementsByTagName('img');
+
+        // console.log(myTags.length);
+
+        // for (let i = 0; i < myTags.length; i++) {
+
+
+        //     let img1 = myTags[i];
+
+        //     img1.classList.add('styled');
+
+        //     // console.log(myTags[i]);
+
+        //     // //0
+        //     // console.log(myTags[0]);
+
+        //     // //1
+        //     // console.log(myTags[1]);
+
+        //     // //2
+        //     // console.log(myTags[2]);
+        // }
+
+        // function drawImage(images) {
+
+        //     myBody.innerHTML = '';
+
+        //     for (let i = 1; i <= images; i++) {
+
+        //         let myIMG = document.createElement('img');
+        //         myIMG.src = i + ".jpg";
+
+        //         if (i % 2 == 0) {
+        //             myIMG.name = 
+        //             // myIMG.classList.add('targetIMG');
+        //         }
+
+        //         myBody.appendChild(myIMG);
+
+        //     }
+
+        // }
+
+        function sendMyForm() {
+
+            alert("submttting form");
+        }
+
+        function helloImage(){
+            alert("hello g");
+        }
+
+    </script>
+
+
+    <!-- <form onsubmit="sendMyForm()" action="">
+
+        <input type="text">
+        <button>Signup</button>
+
+    </form> -->
+
+</body>
+
+</html>

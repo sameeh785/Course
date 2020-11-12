@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #slider{
+            position: relative;
+            width: 700px;
+            height: 600px;
+            border: 1px solid red;
+        }
+        #left{
+            transform: rotate(180deg);
+            position: absolute;
+            left: 0;
+            top: 40%;
+            
+        }
+        #right{
+            position: absolute;
+            right: 0;
+            top: 40%;
+        }
+        #sami{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="slider">
+        <div id="sami">
+
+          <img src="./1.jpg" alt="" width="100%" height="100%">
+        </div>
+           <div id="innner">
+               <img src="./pn.png"  id="right" alt="" width="100px">
+               <img src="./pn.png"  id="left" alt=" "width ="100px">
+
+           </div>
+    </div>
+    <script>
+       let k = document.getElementById('right');
+       let i = 1;
+       k.onclick = function(e){
+           if(i < 4){
+           let p = document.getElementById('sami');
+           console.log(p);
+           p.innerHTML = "";
+           i++;
+           let u= document.createElement('img');
+           u.src = "./" + i + ".jpg";
+           u.style.width = "100%";
+           u.style.height = "100%";
+
+           p.appendChild(u);
+           
+           }
+           else{
+               i = 1;
+           }
+
+
+
+       }
+
+       let l = document.getElementById('left');
+       l.onclick = function(e){
+           if(i > 2){
+           let p = document.getElementById('sami');
+           console.log(p);
+           p.innerHTML = "";
+           i--;
+           let u= document.createElement('img');
+           u.src = "./" + i + ".jpg";
+           u.style.width = "100%";
+           u.style.height = "100%";
+
+           p.appendChild(u);
+           
+           }
+           else{
+               i = 4;
+           }
+
+    
+
+       }
+
+
+
+
+
+    </script>
+</body>
+</html>

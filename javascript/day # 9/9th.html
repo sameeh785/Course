@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        #spaceapp {
+            position: relative;
+            width: 900px;
+            height: 600px;
+            background-image: url(cosmic.jpg);
+            border: 2px solid black;
+            background-size: cover;
+        }
+
+
+        #spaceShip {
+            position: absolute;
+        }
+
+        #spaceShip :first-child {
+            width: 150px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        #splashScreen img,
+        #gameOverScreen img {
+            width: 100px;
+            left: 0;
+            top: 0;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+
+    <script>
+
+        let keys = {
+            say:function(){
+
+                alert(20);
+
+            },
+            educaton:{
+                exams:{
+                    marks:20
+                }
+            }
+        };
+
+        function moveShip() {
+
+            // left
+            if (keys[37] == true) {
+
+                if (parseInt(spaceShip.style.left) > 0) {
+                    spaceShip.style.left = (parseInt(spaceShip.style.left || 0) - 5) + 'px';
+                }
+            }
+
+            //top
+            if (keys[38] == true) {
+
+                if (spaceShip.style.top != "0px") {
+                    spaceShip.style.top = (parseInt(spaceShip.style.top || 0) - 5) + 'px';
+                }
+            }
+
+
+            //right
+            if (keys[39] == true) {
+                let currentRight = parseInt(spaceShip.style.left || 0) + spaceShip.offsetWidth;
+
+                if (currentRight < spaceapp.offsetWidth) {
+
+                    spaceShip.style.left = (parseInt(spaceShip.style.left || 0) + 5) + 'px';
+
+                }
+            }
+
+            //bottom
+            if (keys[40] == true) {
+
+                let currentBottom = parseInt(spaceShip.style.top || 0) + spaceShip.offsetHeight;
+
+                if (currentBottom < spaceapp.offsetHeight) {
+
+                    spaceShip.style.top = (parseInt(spaceShip.style.top || 0) + 5) + 'px';
+
+                }
+            }
+
+
+        }
+
+        function startGame() {
+
+            splashScreen.classList.add('hide');
+            gameScreen.classList.remove('hide');
+
+
+            document.body.onkeydown = function (evt) {
+
+                keys[evt.keyCode] = true;
+                moveShip()
+
+
+            }
+
+            document.body.onkeyup = function (evt) {
+
+                delete keys[evt.keyCode]
+
+
+            }
+
+
+            // if(){
+
+
+            // }
+
+            // switch (evt.code) {
+
+            //     case "ArrowLeft":
+
+            //         if (parseInt(spaceShip.style.left) > 0) {
+            //             spaceShip.style.left = (parseInt(spaceShip.style.left || 0) - 5) + 'px';
+            //         }
+
+            //         break;
+
+            //     case "ArrowUp":
+            //         if (spaceShip.style.top != "0px") {
+            //             spaceShip.style.top = (parseInt(spaceShip.style.top || 0) - 5) + 'px';
+            //         }
+
+            //         break;
+
+            //     case "ArrowRight":
+
+
+            //         let currentRight = parseInt(spaceShip.style.left || 0) + spaceShip.offsetWidth;
+
+            //         if (currentRight < spaceapp.offsetWidth) {
+
+            //             spaceShip.style.left = (parseInt(spaceShip.style.left || 0) + 5) + 'px';
+
+            //         }
+
+            //         break;
+
+            //     case "ArrowDown":
+
+
+            //         let currentBottom = parseInt(spaceShip.style.top || 0) + spaceShip.offsetHeight;
+
+            //         if (currentBottom < spaceapp.offsetHeight) {
+
+            //             spaceShip.style.top = (parseInt(spaceShip.style.top || 0) + 5) + 'px';
+
+            //         }
+
+
+
+            //         break;
+
+
+            // }
+
+        }
+
+        // }
+
+    </script>
+</head>
+
+<body>
+
+    <div id="spaceapp">
+
+        <div id="splashScreen">
+            <img onclick="startGame()" src="start-btn.png" />
+        </div>
+
+        <div id="gameScreen" class="hide">
+            <div id="spaceShip">
+                <img src="ship.png" alt="">
+            </div>
+        </div>
+
+        <div id="gameOverScreen" class="hide">
+            <img src="game-over.png" />
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html>
