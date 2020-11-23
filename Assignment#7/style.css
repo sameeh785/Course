@@ -80,3 +80,50 @@ ul li{
 .spa{
     margin-top: 8px;
 }
+
+.bg_1{
+    height: 400px;
+    background-image: url(./Backgrounds-Business-HD.jpg);
+    background-size: cover;
+    
+}
+#head{
+    margin-left: 3%;
+    margin-top: 7%;
+    font-size: 55px;
+    font-weight: 500;
+    animation-duration: 4s;
+
+    
+}
+.pic{
+    margin-top: 7%;
+}
+
+#head2{
+    margin-left: 3%;
+    font-weight: 450;
+    animation-duration: 5s;
+}
+.head3{
+    margin-left: 3%;
+ animation-duration: 6s;
+}
+.sect{
+    height: 500px;
+    background-color:#ffffff;
+
+
+}
+.main{
+    font-size: 38px;
+    font-weight: 500;
+    animation-duration: 2s;
+}
+#lo{
+    margin-top: 12%;
+ 
+}
+.main2{
+    animation-duration: 2s;
+}

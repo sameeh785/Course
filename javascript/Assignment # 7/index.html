@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            width: 400px;
+            border: 1px solid ;
+          
+
+        }
+        table tr td{
+            border: 1px solid ;
+        }
+    </style>
+</head>
+<body>
+    <table id="a1">
+        <tr>
+        <td class="sam"></td>
+        <td class="btn"></td>
+        <td class="status"><b>Availabe</b></td>
+        <td class="del"></td>
+    </tr>
+        <tr >
+    <td class="sam"></td>
+    <td class="btn"></td>
+    <td class="status"><b>Availabe</b></td>
+    <td class="del"></td>
+</tr>
+        <tr>
+    <td class="sam"></td>
+    <td class="btn"></td>
+    <td class="status"><b>Availabe</b></td>
+    <td class="del"> </td>
+
+        </tr>
+    </table>
+    <script>
+
+
+        let appointments = [
+            { timing: "9am-10am", booked: false },
+            { timing: "10am-11am", booked: false },
+            { timing: "11am-12pm", booked: false }
+        ]
+    //  let k =  document.getElementsByClassName('sam');
+    //  console.log(k);
+    //    for(let i in k){
+    //        console.log(i);
+    //       let b =  document.createElement('b');
+        
+         
+    //    }
+    //    let l = [1,2,3,4];
+    //    for(let j in l){
+    //        console.log(j);
+    //    }
+
+     let k =  document.querySelectorAll('.sam');
+     console.log(k)
+       for(let i = 0 ; i < k.length; i++){
+          let b =  document.createElement('b');
+          b.innerText = appointments[i].timing;
+          console.log(b);
+          k[i].appendChild(b);
+       }
+
+       
+       let j =  document.querySelectorAll('.btn');
+   
+       for(let i = 0 ; i < j.length; i++){
+          let b =  document.createElement('button');
+          b.innerText = "GET Appointment";
+          j[i].appendChild(b);
+          b.onclick = function(e){
+                let time1 = e.target.parentNode.previousElementSibling.firstChild.innerText;
+                for(let p = 0 ; p <appointments.length ; p++){
+                    if(appointments[p].timing.includes(time1)){
+                        appointments[p].booked =true;
+                        
+                    }
+                   if(appointments[p].booked ==true){
+                       e.target.disabled =true;
+                   }
+                }
+             let status = document.getElementsByClassName('status');
+             for(let i = 0 ; i <status.length ; i++){
+                 if(appointments[i].booked == true){
+                     status[i].innerHTML = '<b>BOOKED</b>'; 
+                 }
+             }
+          };
+         
+        
+       }
+       let rem = document.getElementsByClassName('del');
+       function removefromUI(event){
+           console.log(event.target);  
+           event.target.parentNode.parentNode.remove();
+       }
+       function removeFromArray(event){
+           let setIndex ;
+           appointments.forEach(function(item,i){
+              if(item.timing == event.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.firstChild.innerText){
+                  setIndex = i;
+                  return false
+                  
+              }
+          })
+           appointments.splice(setIndex,1);
+       }
+       for(let i of rem){
+          let butn = document.createElement("button");
+          butn.innerText = "Delete";
+          butn.onclick = function(e){
+              removefromUI(e);
+              removeFromArray(e);
+          }
+          i.appendChild(butn);
+       }
+    </script>
+</body>
+</html>

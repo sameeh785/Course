@@ -1,0 +1,325 @@
+<script>
+
+    // let pers1 = {
+    //     name: "ali",
+    //     city: "FSD",
+    //     roll: 100
+    // };
+
+    // let pers2 = {
+    //     name: "ahmed",
+    //     city: "LHR",
+    //     roll: 101
+    // };
+
+    // let pers3 = {
+    //     name: "huma",
+    //     city: "KHI",
+    //     roll: 102
+    // };
+
+
+    let students = [
+        {
+            name: "ali",
+            city: "FSD",
+            roll: 100
+        },
+        {
+            name: "ahmed",
+            city: "LHR",
+            roll: 101
+        },
+        {
+            name: "huma",
+            city: "KHI",
+            roll: 102
+        }
+    ]
+
+    // console.log(students);
+
+    for (let data in students) {
+        console.log(students[data].name);
+    }
+
+    // for(let data of students){
+    //     console.log(data.roll);
+    // }
+
+
+
+</script>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        #spaceapp {
+            position: relative;
+            width: 900px;
+            height: 600px;
+            background-image: url(cosmic.jpg);
+            border: 2px solid black;
+            background-size: cover;
+        }
+
+
+        #spaceShip {
+            position: absolute;
+        }
+
+        #spaceShip :first-child {
+            width: 150px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        #splashScreen img,
+        #gameOverScreen img {
+            width: 100px;
+            left: 0;
+            top: 0;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        #position {
+            position: absolute;
+            right: 0;
+            background-color: white;
+            width: 101px;
+        }
+    </style>
+
+    <script>
+
+        let a = true;
+
+        if (0 && 1) {
+            alert("ok");
+        }
+
+        // if("asdasdas"){
+        //     alert("ok");
+        // }
+
+
+        // true
+        // //32489238432483 except 0
+        // // all alphabets except ""
+        // {}
+        // []
+
+        // false
+        // 0
+        // ""
+        // null
+        // undefined
+        // NaN
+
+
+
+
+
+
+        false
+
+
+
+        let keys = {
+            say: function () {
+
+                alert(20);
+
+            },
+            educaton: {
+                exams: {
+                    marks: 20
+                }
+            }
+        };
+
+        function moveShip() {
+
+            // left
+            if (keys[37] == true) {
+
+                if (parseInt(spaceShip.style.left) > 0) {
+                    spaceShip.style.left = (parseInt(spaceShip.style.left || 0) - 5) + 'px';
+                }
+            }
+
+            //top
+            if (keys[38] == true) {
+
+                if (spaceShip.style.top != "0px") {
+                    spaceShip.style.top = (parseInt(spaceShip.style.top || 0) - 5) + 'px';
+                }
+            }
+
+
+            //right
+            if (keys[39] == true) {
+                let currentRight = parseInt(spaceShip.style.left || 0) + spaceShip.offsetWidth;
+
+                if (currentRight < spaceapp.offsetWidth) {
+
+                    spaceShip.style.left = (parseInt(spaceShip.style.left || 0) + 5) + 'px';
+
+                }
+            }
+
+            //bottom
+            if (keys[40] == true) {
+
+                let currentBottom = parseInt(spaceShip.style.top || 0) + spaceShip.offsetHeight;
+
+                if (currentBottom < spaceapp.offsetHeight) {
+
+                    spaceShip.style.top = (parseInt(spaceShip.style.top || 0) + 5) + 'px';
+
+                }
+            }
+
+
+
+            leftBox.innerText = spaceShip.style.left.replace('px', '') || 0;
+            topBox.innerText = spaceShip.style.top.replace('px', '') || 0;
+
+        }
+
+        function startGame() {
+
+            splashScreen.classList.add('hide');                
+            gameScreen.classList.remove('hide');
+
+
+            document.body.onkeydown = function (evt) {
+
+                keys[evt.keyCode] = true;
+                moveShip()
+
+
+            }
+
+            document.body.onkeyup = function (evt) {
+
+                delete keys[evt.keyCode]
+
+
+            }
+
+
+            // if(){
+
+
+            // }
+
+            // switch (evt.code) {
+
+            //     case "ArrowLeft":
+
+            //         if (parseInt(spaceShip.style.left) > 0) {
+            //             spaceShip.style.left = (parseInt(spaceShip.style.left || 0) - 5) + 'px';
+            //         }
+
+            //         break;
+
+            //     case "ArrowUp":
+            //         if (spaceShip.style.top != "0px") {
+            //             spaceShip.style.top = (parseInt(spaceShip.style.top || 0) - 5) + 'px';
+            //         }
+
+            //         break;
+
+            //     case "ArrowRight":
+
+
+            //         let currentRight = parseInt(spaceShip.style.left || 0) + spaceShip.offsetWidth;
+
+            //         if (currentRight < spaceapp.offsetWidth) {
+
+            //             spaceShip.style.left = (parseInt(spaceShip.style.left || 0) + 5) + 'px';
+
+            //         }
+
+            //         break;
+
+            //     case "ArrowDown":
+
+
+            //         let currentBottom = parseInt(spaceShip.style.top || 0) + spaceShip.offsetHeight;
+
+            //         if (currentBottom < spaceapp.offsetHeight) {
+
+            //             spaceShip.style.top = (parseInt(spaceShip.style.top || 0) + 5) + 'px';
+
+            //         }
+
+
+
+            //         break;
+
+
+            // }
+
+        }
+
+        // }
+
+    </script>
+</head>
+
+<body>
+
+    <div id="spaceapp">
+
+
+        <div id="position">
+            <table>
+                <tr>
+                    <td>Left</td>
+                    <td id="leftBox">0</td>
+                </tr>
+                <tr>
+                    <td>Top</td>
+                    <td id="topBox">0</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div id="splashScreen">
+            <img onclick="startGame()" src="start-btn.png" />
+        </div>
+
+        <div id="gameScreen" class="hide">
+            <div id="spaceShip">
+                <img src="ship.png" alt="">
+            </div>
+        </div>
+
+        <div id="gameOverScreen" class="hide">
+            <img src="game-over.png" />
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html> -->

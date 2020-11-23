@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #add_container_main_div {
+
+            display: flex;
+
+        }
+
+        .add_container {
+            width: 250px;
+            height: 250px;
+            border: 1px solid grey;
+            margin-left: 8px;
+        }
+
+        .pic_div {
+            width: 100%;
+            height: 50%;
+            display: flex;
+
+
+        }
+
+        .add_img {
+
+            height: 100%;
+            width: 70%;
+            margin-left: 15px;
+        }
+
+        .featured {
+            padding: 4px 8px;
+            display: block;
+        }
+
+        .discription_div {
+            height: 50%;
+            width: 100%;
+            display: flex;
+
+
+        }
+
+        .side_div {
+            height: 100%;
+            width: 5px;
+            background-color: rgb(228, 228, 52);
+        }
+
+        .right_div {
+            margin-top: 10px;
+            margin-left: 10px;
+            height: 100%;
+            width: 99%;
+
+        }
+
+        .price_div {
+            width: 100%;
+            height: 50%;
+        }
+
+        .location_div {
+            width: 100%;
+            height: 30%;
+
+        }
+
+        .delete_ad {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="add_container_main_div">
+
+    </div>
+</body>
+<script>
+    //   let ads_array = [
+    //         {
+
+    //             favorite: true,
+    //             price: "RS.20,000",
+    //             description: "Tshis is description 1",
+    //             city: " From FSD",
+    //             img: "https://apollo-singapore.akamaized.net:443/v1/files/yijbffrxl3ir-PK/image;s=272x0"
+    //         },
+    //         {
+    //             dummy: true,
+    //         },
+    //         {
+    //             favorite: true,
+    //             featured: true,
+    //             price: "RS.10,000",
+    //             description: "Tshis is description 2",
+    //             city: "From LHR",
+    //             img: "https://apollo-singapore.akamaized.net:443/v1/files/f0vscgacfkzp3-PK/image;s=272x0"
+    //         },
+    //         {
+    //             favorite: true,
+    //             price: "RS.50,000",
+    //             city: "From KHI",
+    //             description: "Tshis is description 3",
+    //             img: "https://apollo-singapore.akamaized.net:443/v1/files/pcfwv0lonq0b2-PK/image;s=272x0"
+    //         },
+
+    //     ]
+    // appendadds(ads_array);
+
+    // function appendadds(data){
+
+    //     for(let ads of data){
+
+    //         let parent=document.getElementById("add_container_main_div");
+    //             let add_container = document.createElement("div");
+    //         add_container.classList.add("add_container");
+    //         parent.appendChild(add_container);
+    //         if(!ads.dummy){
+
+    //         let pic_div = document.createElement("div");
+    //         pic_div.classList.add("pic_div");
+    //         add_container.appendChild(pic_div);
+
+    //         // let featured = document.createElement("span");
+    //         // featured.classList.add("featured");
+    //         // featured.innerHTML="Featured"
+    //         // pic_div.appendChild(featured);
+
+
+    //         let add_img = document.createElement("img");
+    //         add_img.classList.add("add_img");
+    //         add_img.src=ads.img;
+    //         pic_div.appendChild(add_img);
+
+
+
+
+
+    //         let discription_div = document.createElement("div");
+    //         discription_div.classList.add("discription_div");
+    //         add_container.appendChild(discription_div);
+
+
+    //         let side_div = document.createElement("div");
+    //         side_div.classList.add("side_div");
+    //         discription_div.appendChild(side_div);
+
+    //         let right_div = document.createElement("div");
+    //         right_div.classList.add("right_div");
+    //         discription_div.appendChild(right_div);
+
+    //         let price_div = document.createElement("div");
+    //         price_div.classList.add("price_div");
+    //         right_div.appendChild(price_div);
+
+    //         let price_span = document.createElement("p");
+    //         price_span.classList.add("price_span");
+    //         price_span.innerHTML=ads.price;
+    //         price_div.appendChild(price_span);
+
+    //         let description_span = document.createElement("span");
+    //          description_span.classList.add("description_span");
+    //          description_span.innerHTML=ads.description;
+    //          price_div.appendChild(description_span);
+
+    //          let location_div = document.createElement("div");
+    //          location_div.classList.add("location_div");
+    //         right_div.appendChild(location_div);
+
+    //         let location_span = document.createElement("span");
+    //         location_span.classList.add("location_span");
+    //         location_span.innerHTML=ads.city;
+    //         location_div.appendChild(location_span);
+
+    //         let delete_ad = document.createElement("button");
+    //         delete_ad.classList.add("delete_ad");
+    //         delete_ad.innerHTML="delete"
+    //         location_div.appendChild(delete_ad);
+
+
+    //         delete_ad.onclick=function(){
+
+
+    //             add_container.remove();
+
+    //             let myIndex = data.indexOf(ads);
+
+    //             data.splice(myIndex, 1);
+
+
+    //             // delete ads;
+
+    //         }
+
+
+
+
+
+    //         }else{
+    //             add_container.style.backgroundColor="blue";
+    //         }
+
+
+    //     }
+
+
+    // }
+
+
+    let ads = ['a', 'b', 'c', 'd', 'e', 'f']
+    // b,c,d,e,f,  =0
+    // b,d,e,f = 1
+    // b ,d,f =2
+
+    // ads.forEach(function (item,index) {
+    //      console.log(index,item);
+    //      ads.splice(0, 1);
+
+    // });
+   console.log(ads);
+    //     [
+    // //    item 0    // 'a' 0,
+    // //    item 1        'b' 1,
+    //         'c' 2
+    //     ]
+
+
+
+    // for (let item = 0; item < ads.length;item++) {
+
+    //     ads.splice(0, 1);
+    //     item--;
+    //     console.log(item);
+
+    // }
+
+    // console.log(ads);
+
+  for(let item in ads){
+
+
+    ads.splice(item, 1);
+
+      console.log( ads[item] );
+  }
+console.log(ads);
+
+</script>
+
+</html>

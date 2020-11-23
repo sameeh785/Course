@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="some">
+
+        <input id="email" type="email">
+        <input id="password" type="password">
+
+        <button id="some1" onclick="requestAppointment(event)">Request Appointment </button>
+    </div>
+
+
+    <script>
+
+
+        let appointments = [
+            { timing: "9am-10am", booked: false },
+            { timing: "10am-11am", booked: false },
+            { timing: "11am-12pm", booked: false }
+        ]
+
+
+        function requestAppointment(e) {
+
+          //  e.target.disabled = true;
+
+            let aNUmber = prompt("Enter appointment numbwe");
+
+            appointments[aNUmber - 1].booked = true;
+
+
+
+        }
+
+        function showAviableAppointments() {
+
+            for (let appointment of appointments) {
+
+                if (!appointment.booked) {
+                    console.log(appointment);
+                }
+
+            }
+
+        }
+
+        showAviableAppointments();
+
+
+
+
+
+
+        // generatePrimeNumbers(20)
+
+
+        // function generatePrimeNumbers(number) {
+
+        //     for (let j = 2; j <= number; j++) {
+
+        //         let div = j / 2;
+        //         let flag = true;
+
+        //         for (let i = 2; i <= div; i++) {
+
+        //             if (j % i == 0) {
+        //                 flag = false;
+        //                 break;
+        //             }
+
+        //         }
+
+        //         if (flag) {
+        //             console.log('primer number ' + j);
+        //         }
+
+        //     }
+
+        // }
+
+

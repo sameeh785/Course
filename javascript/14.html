@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+<body>
+
+    <table border="1" id="myTable">
+
+    </table>
+
+</body>
+
+
+<script>
+
+
+    let appointments = [
+        { timing: "9-11", booked: false },
+        { timing: "11-12", booked: false },
+        { timing: "12-1", booked: false },
+        { timing: "1-2", booked: false }
+    ];
+
+    showAppointments();
+
+
+
+    function bookAppointment(cIndex) {
+
+        appointments[cIndex].booked = !appointments[cIndex].booked;
+        showAppointments();
+
+
+    }
+    function deleteAppointment(cIndex) {
+
+        appointments.splice(cIndex, 1);
+
+
+        showAppointments()
+
+        if (appointments.length == 0) {
+            myTable.style.display = "none";
+        }
+
+
+    }
+    function editAppointment(index1){
+        let newTiming = prompt('Enter the timing');
+        appointments[index1].timing = newTiming;
+        showAppointments();
+    }
+
+    function showAppointments() {
+
+        myTable.innerHTML = '';
+
+        // for (let index in appointments) {
+        for (let index=0;index<appointments.length;index++) {
+
+
+            let appointment = appointments[index];
+
+            let tr = document.createElement('tr');
+            let aIndex = index;
+
+            // let aIndex = appointments.indexOf(appointment);
+
+
+            let timingCell = document.createElement('td');
+            timingCell.innerText = appointment.timing;
+
+            let deleteCell = document.createElement('td');
+            deleteCell.innerText = appointment.booked;
+
+            let statusCell = document.createElement('td');      
+            statusCell.innerHTML = '<button onclick="bookAppointment(' + aIndex + ')">Book Appointment</button>';
+
+            let editCell = document.createElement('td');
+            editCell.innerHTML = '<button onclick="editAppointment(' + aIndex + ')">Edit Appointment</button>';
+
+
+            let bookingCell = document.createElement('td');
+
+
+            bookingCell.innerHTML = '<button onclick="deleteAppointment(' + aIndex + ')">Delete appointment</button>';
+
+
+            tr.appendChild(statusCell);
+            tr.appendChild(timingCell);
+            tr.appendChild(deleteCell);
+            tr.appendChild(bookingCell);
+            tr.appendChild(editCell);
+
+
+            myTable.appendChild(tr)
+
+
+        }
+
+    }
+
+
+</script>
+
+</head>
+
+
+</html>

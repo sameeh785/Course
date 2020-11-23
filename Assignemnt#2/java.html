@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #a2 {
+        width: 500px;
+        position: relative;
+      }
+      .a1 {
+        width: 500px;
+    
+    position: relative;
+      }
+      /* @keyframes sami {
+            from{
+                margin-left: 0px;
+            }
+            to{
+                margin-left: 950px;
+            } 
+            
+        } */
+
+      #a3 {
+        position: absolute;
+    width: 69px;
+    /* height: 110px; */
+    top: 53%;
+    left: 16%;
+}
+      
+
+      #a4 {
+        position: absolute;
+    width: 69px;
+    /* height: 110px; */
+    top: 53%;
+    left: 72%;
+        /* animation: sami2 1s linear 0s;
+            animation-iteration-count: 4; */
+      }
+      /* @keyframes sami2 {
+            from {
+               transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+              
+            } */
+    </style>
+  </head>
+  <body>
+    <div id="a2">
+      <img class="a1" src="./my-car.png" alt="" />
+      <img id="a3" src="wheel.png" alt="" />
+      <img id="a4" src="wheel.png" alt="" />
+    </div>
+    <button id="start">Start</button>
+
+    <!-- <button id="start">Start</button> -->
+    <script>
+      let k = 0;
+      let degree = 0;
+      let stop;
+      let tyre;
+      start.onclick = function () {
+        let keycode = setInterval(moveCar, 60);
+        let keyCode = setInterval(moveWheel, 50);
+
+        stop = keycode;
+        tyre = keyCode;
+        // let keyCode = setInterval(movWheel,1000);
+      };
+      function moveCar() {
+        k++;
+        degree++;
+        //console.log(a2.offsetleft);
+        if (a2.offsetLeft + a2.offsetWidth < innerWidth) {
+          a2.style.marginLeft = (parseInt(a2.style.marginLeft || 0) + k) + "px";
+        } else {
+          clearInterval(stop);
+        }
+      }
+        function moveWheel(){
+
+          degree  = degree+10;
+          if((a2.offsetLeft + a2.offsetWidth) < innerWidth){
+
+          a3.style.transform = "rotate(" + degree + "deg)";
+          a4.style.transform = "rotate(" + degree + "deg)";
+          }
+          else{
+
+              clearInterval(tyre);
+          }
+      }
+    </script>
+  </body>
+</html>

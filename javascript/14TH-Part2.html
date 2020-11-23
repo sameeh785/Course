@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<video width="600" controls id="test" src="./Keh Len De-Kaka-720p (Gulambande.com).mp4"></video>
+
+
+<button id="takePhotoBTN">Take SCreenshot</button>
+
+
+<button onclick="volumeUp()">+</button>
+<button onclick="volumeDN()">-</button>
+
+
+<button id="toggleMUTE">MUTE</button>
+
+<!-- <canvas id="myCanvas" width="600" height="500"></canvas> -->
+
+
+<img width="600" id="myImage" src="" alt="">
+
+<script>
+
+    function volumeUp() {
+
+        let cVolume = test.volume;
+
+        if (cVolume < 1) {
+            test.volume += 0.1;
+            
+        }
+
+    }
+
+    function volumeDN() {
+
+        let cVolume = test.volume;
+
+        if (cVolume >= 0.1) {
+           
+            test.volume -= 0.1;
+        }
+
+    }
+
+    takePhotoBTN.onclick = takePhoto
+
+    //  setInterval( function () {
+
+    //     let myDrawing = myCanvas.getContext('2d');
+
+    //     myDrawing.drawImage(test,0,0, 500,295);
+
+    // }, 0);
+
+    function takePhoto() {
+
+        let myCanvas = document.createElement('canvas');
+        myCanvas.width = 600;
+        myCanvas.height = 500;
+
+        let myDrawing = myCanvas.getContext('2d');
+
+        myDrawing.drawImage(test, 0, 0, 500, 295)
+
+
+        myImage.src = myCanvas.toDataURL();
+
+    }
+
+
+</script>
+</body>
+</html>

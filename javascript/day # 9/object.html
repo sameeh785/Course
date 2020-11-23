@@ -1,4 +1,4 @@
-let person = {
+<!-- let person = {
     sayName:function(){
         alert(person.city);
     },
@@ -26,4 +26,25 @@ let cities = {};
             LHR:042
         };
 
-delete cities.FSD ;      // t delte 
+delete cities.FSD ;      // t delte  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+let cities = {};
+
+let city = prompt("Enter city");
+let code = prompt("Enter code");
+
+cities[city] = code;
+
+console.log(cities)
+    </script>
+</body>
+</html>

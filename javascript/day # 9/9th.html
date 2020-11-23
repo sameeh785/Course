@@ -41,8 +41,38 @@
             right: 0;
             margin: auto;
         }
+        h4{
+            display: inline;
+            color: white;
+        }
     </style>
 
+</head>
+
+<body>
+
+    <div id="spaceapp">
+
+        <div id="splashScreen">
+            <img onclick="startGame()" src="start-btn.png" />
+        </div>
+
+        <div id="gameScreen" class="hide">
+            <h4> TOP <span id="to"></span></h4> <h4> Bottom <span id="bo"></span></h4> <h4> Right <span id="ri"></span></h4> 
+            <h4>left <span id="le"></span></h4>
+            <div id="spaceShip">
+                <img src="ship.png" alt="">
+            </div>
+        </div>
+
+        <div id="gameOverScreen" class="hide">
+            <img src="game-over.png" />
+        </div>
+
+
+
+    </div>
+    
     <script>
 
         let keys = {
@@ -66,6 +96,9 @@
                 if (parseInt(spaceShip.style.left) > 0) {
                     spaceShip.style.left = (parseInt(spaceShip.style.left || 0) - 5) + 'px';
                 }
+                
+               let left =  document.getElementById('le');
+               left.innerHTML = "<h4>" +  spaceShip.style.left +"</h4>"
             }
 
             //top
@@ -74,6 +107,8 @@
                 if (spaceShip.style.top != "0px") {
                     spaceShip.style.top = (parseInt(spaceShip.style.top || 0) - 5) + 'px';
                 }
+                let left =  document.getElementById('to');
+               left.innerHTML = "<h4>" +  spaceShip.style.left +"</h4>"
             }
 
 
@@ -86,6 +121,8 @@
                     spaceShip.style.left = (parseInt(spaceShip.style.left || 0) + 5) + 'px';
 
                 }
+                let left =  document.getElementById('ri');
+               left.innerHTML = "<h4>" +  spaceShip.style.left +"</h4>"
             }
 
             //bottom
@@ -98,10 +135,28 @@
                     spaceShip.style.top = (parseInt(spaceShip.style.top || 0) + 5) + 'px';
 
                 }
+                let left =  document.getElementById('bo');
+               left.innerHTML = "<h4>" +  spaceShip.style.left +"</h4>"
             }
 
 
         }
+
+        document.body.onkeydown = function (evt) {
+
+keys[evt.keyCode] = true;
+moveShip()
+
+
+}
+
+document.body.onkeyup = function (evt) {
+
+delete keys[evt.keyCode]
+
+
+}
+
 
         function startGame() {
 
@@ -109,21 +164,7 @@
             gameScreen.classList.remove('hide');
 
 
-            document.body.onkeydown = function (evt) {
-
-                keys[evt.keyCode] = true;
-                moveShip()
-
-
-            }
-
-            document.body.onkeyup = function (evt) {
-
-                delete keys[evt.keyCode]
-
-
-            }
-
+          
 
             // if(){
 
@@ -134,7 +175,7 @@
 
             //     case "ArrowLeft":
 
-            //         if (parseInt(spaceShip.style.left) > 0) {
+            //         if (parseInt(spaceShip.style.left) != "0px") {
             //             spaceShip.style.left = (parseInt(spaceShip.style.left || 0) - 5) + 'px';
             //         }
 
@@ -183,29 +224,6 @@
         // }
 
     </script>
-</head>
-
-<body>
-
-    <div id="spaceapp">
-
-        <div id="splashScreen">
-            <img onclick="startGame()" src="start-btn.png" />
-        </div>
-
-        <div id="gameScreen" class="hide">
-            <div id="spaceShip">
-                <img src="ship.png" alt="">
-            </div>
-        </div>
-
-        <div id="gameOverScreen" class="hide">
-            <img src="game-over.png" />
-        </div>
-
-
-
-    </div>
 
 </body>
 

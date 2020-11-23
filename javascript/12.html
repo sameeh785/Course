@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .a1{
+            color: green;
+        }
+        .a2{
+            color: black;
+        }
+
+    </style>
+
+    <script>
+
+
+    </script>
+
+</head>
+
+<body>
+
+    <table border="1">
+        <tr>
+            <td>Biryani</td>
+            <td>150</td>
+            <td><input value="0" type="number" id="biryani" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Jalfrezi</td>
+            <td>300</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr>
+            <td>White Karahi</td>
+            <td>1400</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr>
+            <td>Daal Maash</td>
+            <td>130</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Paasta</td>
+            <td>450</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Salad</td>
+            <td>50</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Raita</td>
+            <td id="price">30</td>
+            <td><input value="0" type="number" id="raita"/></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Chai</td>
+            <td>30</td>
+            <td>
+                <input value="0" type="number" />
+            </td>
+            <td id="some">
+                <input class="dish" type="checkbox" />
+            </td>
+        </tr>
+        <tr>
+            <td><button onclick="calculateBill()">Calculate Bill</button></td>
+            <td colspan="3">
+                <b>Total Bill</b>
+                <span id="totalBill"></span>
+                <b>Discount</b>
+                <span id="discountBox"></span>
+                <b>Net Bill</b>
+                <span id="netBillBox"></span>
+                <b>GTS</b>
+                <span id="gts"></span>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+
+
+        function calculateBill() {
+
+            let dishes = document.getElementsByClassName('dish');
+
+            // console.log(dishes);
+
+            let bill = 0;
+            let discount = 0;
+            let netBill= 0;
+            let gtss = 0
+            
+            for(let k of dishes){
+            
+          
+            if(k.checked){
+                // k.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.classList.toggle('a1');
+               // k.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.classList.toggle('a2');
+            if(k.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.innerText == 'Biryani'){
+                addRaita();
+            }
+               let price = k.parentNode.previousElementSibling.previousElementSibling.innerText;
+               let quantity = k.parentNode.previousElementSibling.firstChild.value;
+               bill += parseInt(price)*quantity;
+            }
+
+           
+
+            }
+             
+            
+            if(bill > 1200){
+                discount = bill * 0.10;
+                netBill = bill - discount;
+                console.log(bill);
+                discountBox.innerText = discount;
+               
+
+
+            }
+            gtss = bill * 0.17;
+            totalBill.innerText = bill;
+            netBillBox.innerText = netBill;
+            gts.innerText = gtss;
+
+          function addRaita(){
+             let countt =  biryani.value;
+             bill +=  countt * price.innerText;
+              raita.value = countt;
+
+          }
+            
+        //     for (let dish of dishes) {
+                
+        //         if (dish.checked) {
+                    
+        //             let price = dish.parentNode.previousElementSibling.previousElementSibling.innerText;
+        //             let qty = dish.parentNode.previousElementSibling.firstChild.value;
+                    
+        //             bill += price * qty;
+                    
+        //         }
+                
+        //     }
+            
+        //     let netBill = bill;
+
+            
+        //     if (bill > 1200) {
+        //         discount = bill * 0.10;
+        //         netBill = bill - discount;
+        //     }
+
+        //     totalBill.innerText = bill;
+        //     discountBox.innerText = discount;
+        //     netBillBox.innerText = netBill;
+
+        // }
+        }
+        let dishes = document.getElementsByClassName('dish');
+        for(let k of dishes){
+        k.onclick = function(e){
+                    if(e.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.classList.contains('a1')){
+                        e.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.classList.add('a2')
+                        e.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.classList.remove('a1')
+                        // e.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.style.color = "black";
+                    }
+                    else{
+                        e.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.classList.add('a1');
+                        e.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.classList.remove('a2');
+                        // e.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.style.color = "green";
+                    }
+                }
+        }
+    </script>
+
+</body>
+
+</html>
