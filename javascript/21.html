@@ -1,0 +1,82 @@
+<script>
+
+
+
+    let fName = "Khurram";
+    let lName = "Raheel";
+
+    function getCity() {
+        return "FSD";
+    }
+
+    let fullName = `${fName} is a teacher at Gamica in ${getCity()}. ${fName} is also a developer`;
+
+
+
+    class Vehicle {
+        regNo = ""
+        wheels = 3
+        constructor(wheels, regNo) {
+            this.wheels = wheels;
+            this.regNo = regNo;
+        }
+    }
+
+    class Rickshaw extends Vehicle {
+        handle = 0
+        constructor(handle, wheels, regNo) {
+            super(wheels, regNo);
+            this.handle = handle;
+        }
+    }
+
+    class Bus extends Vehicle {
+        steering = ""
+    }
+
+    let r1 = new Rickshaw(1, 6, "FSD-101");
+    let r2 = new Rickshaw();
+
+    class Person {
+        name = ""
+        email = ""
+        adress = ""
+    }
+
+    class Admin extends Person {
+        salary = 0
+    }
+
+    class Teacher extends Person {
+        section = ""
+        salary = 0
+    }
+
+    class Student extends Person {
+        // roll = ""
+        fees = ""
+        section = ""
+
+        get roll() {
+            return this._roll;
+        }
+
+        set roll(newRoll) {
+
+            if (isNaN(newRoll)) {
+                throw "Enter valid error";
+            } else {
+                this._roll = newRoll;
+            }
+
+        }
+
+    }
+
+    let s1 = new Student()
+
+
+    // let t1 = new Teacher()
+    // let a1 = new Admin()
+
+</script>

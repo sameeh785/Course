@@ -1,0 +1,27 @@
+import React from 'react';
+import { Provider, connect } from 'react-redux'
+
+function usersList(props) {
+
+    return <table border="1">
+        {
+            props.userSection.map((user) => {
+                return <tr>
+
+                    <td>{user.name}</td>
+
+                </tr>
+            })
+        }
+    </table>
+
+}
+
+export default connect((store) => {
+
+    return store;
+
+})(usersList)
+
+
+// we used connect when our component need to get the data from redux store

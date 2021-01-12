@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+
+        let newNums = nums.filter((item, inde) => item > 5);
+    
+        // let newNums = [];
+
+        // nums.forEach(function (item, ind) {
+
+        //     if (item > 5) {
+        //         newNums.push(item);
+        //     }
+
+        // });
+
+        console.log(newNums);
+
+
+        // let data = sumNumbers(1,2,3,4,5,7,8,9,10,11);
+
+        // console.log(data);
+
+        // function sumNumbers(...nums) {
+
+        //     let total = 0;
+
+        //     for(let num of nums){
+
+        //         total += num;
+        //     }
+
+        //     return total;
+        //     // code likhna h
+
+        // }
+
+    </script>
+
+
+</head>
+
+<body class="some">
+    <!-- asdlksa -->
+
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+        let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+
+        let newNums = [];
+
+        nums.forEach(function (item, ind) {
+
+            console.log(item)
+
+        });
+
+
+        // let data = sumNumbers(1,2,3,4,5,7,8,9,10,11);
+
+        // console.log(data);
+
+        // function sumNumbers(...nums) {
+
+        //     let total = 0;
+
+        //     for(let num of nums){
+
+        //         total += num;
+        //     }
+
+        //     return total;
+        //     // code likhna h
+
+        // }
+
+    </script>
+
+
+</head>
+
+<body class="some">
+    <!-- asdlksa -->
+
+
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+
+        let data = sumNumbers(1,2,3,4,5,7,8,9,10,11);
+
+        console.log(data);
+
+        function sumNumbers(...nums) {
+
+            let total = 0;
+
+            for(let num of nums){
+
+                total += num;
+            }
+
+            return total;
+            // code likhna h
+
+        }
+
+    </script>
+
+
+</head>
+
+<body class="some">
+    <!-- asdlksa -->
+
+
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+        .selected{
+        background-color: orange;
+    }
+    
+    </style>
+</head>
+
+<body onclick="unselectItem()">
+
+    <form>
+        <div>
+            <input id="name1" type="text" placeholder="name">
+        </div>
+        <div>
+            <input id="city" type="text" placeholder="city">
+        </div>
+        <div>
+            <input id="program" type="text" placeholder="program">
+        </div>
+        <button onclick="addUser()" type="button">Save</button>
+        <button id="editUserBtn" style="display:none" onclick="editUser()" type="button">Edit</button>
+    </form>
+
+
+
+    <table id="myUser" border="1">
+
+
+
+    </table>
+
+
+    <script>
+
+        let users = [];
+
+
+        function unselectItem() {
+
+            sIndex = null;
+
+            let preiousSelected = document.querySelector('.selected');
+
+            if (preiousSelected != null) {
+                preiousSelected.classList.remove('selected');
+            }
+
+
+        }
+
+        function editUser() {
+
+
+            // if(users[sIndex] == undefined){
+            //     alert("plase select a a user");
+            //     return;
+            // }
+
+            let name = prompt();
+            let city = prompt();
+            let program = prompt();
+
+            users[sIndex].name = name;
+            users[sIndex].city = city;
+            users[sIndex].program = program;
+
+            displayUsers();
+
+        }
+
+        function addUser() {
+
+            if (name1.value && city.value && program.value) {
+
+                let user = {
+                    name: name1.value,
+                    city: city.value,
+                    program: city.value,
+                };
+
+                users.push(user);
+
+                displayUsers();
+            } else {
+                alert("please fill up your form");
+            }
+
+
+        }
+
+        let sIndex;
+
+
+        function displayUsers() {
+
+            myUser.innerHTML = "";
+
+            // users.forEach(function(user){
+            for (let user of users) {
+
+                let tr = document.createElement('tr');
+                tr.onclick = function (evt) {
+
+                    evt.stopPropagation();
+
+                    sIndex = users.indexOf(user);
+
+                    editUserBtn.style.display = "";
+
+                    let preiousSelected = document.querySelector('.selected');
+
+                    if (preiousSelected != null) {
+                        preiousSelected.classList.remove('selected');
+                    }
+
+                    tr.classList.add('selected');
+
+                }
+
+                let nameCell = document.createElement('td');
+                nameCell.innerText = user.name;
+
+                let deleteCell = document.createElement('td');
+                let userIndex = users.indexOf(user);
+                deleteCell.innerHTML = "<button onClick='delFunction(" + userIndex + ")'>Delete User</button>";
+
+                let cityCell = document.createElement('td');
+                cityCell.innerText = user.city;
+
+                let programCell = document.createElement('td');
+                programCell.innerText = user.program;
+
+                tr.appendChild(nameCell);
+                tr.appendChild(cityCell);
+                tr.appendChild(programCell);
+                tr.appendChild(deleteCell);
+
+                myUser.appendChild(tr);
+                e.target.classList.add('a1');
+            }
+
+            // });
+
+
+        }
+
+        function delFunction(userIndex) {
+
+
+            if (window.confirm("Are u sure want to delte this")) {
+
+                event.stopPropagation();
+                users.splice(userIndex, 1);
+                displayUsers();
+
+                editUserBtn.style.display = "none";
+
+            }
+
+
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

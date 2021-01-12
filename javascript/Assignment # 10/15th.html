@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+    </style>
+
+    <script>
+
+
+    </script>
+
+</head>
+
+<body>
+
+    <table border="1">
+        <tr id="birani">
+
+            <td>Biryani</td>
+            <td>150</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr id="Jalfrezi">
+            <td>Jalfrezi</td>
+            <td>300</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr id="WhiteKarahi">
+            <td>White Karahi</td>
+            <td>1400</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr id="DaalMaash">
+            <td>Daal Maash</td>
+            <td>130</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr id="Paasta">
+            <td>Paasta</td>
+            <td>450</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr id="Salad">
+            <td>Salad</td>
+            <td>50</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr id="Raita">
+            <td>Raita</td>
+            <td>30</td>
+            <td><input id="raitanumber" value="0" type="number" /></td>
+            <td><input id="raitacheckbox" class="dish" type="checkbox" /></td>
+        </tr>
+        <tr id="Chai">
+            <td>Chai</td>
+            <td>30</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr>
+            <td><button onclick="calculateBill()">Calculate Bill</button></td>
+            <td colspan="3">
+                <b>Total Bill</b>
+                <span id="totalBill"></span>
+                <b>Discount</b>
+                <span id="discountBox"></span>
+                <b>GST</b>
+                <span id="gstbox"></span>
+                <b>Net Bill</b>
+                <span id="netBillBox"></span>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+     
+        let orderedDishes = [];
+        class DishArray{
+        constructor (name , quantity , checked){
+            this.name = name,
+            this.qty = quantity,
+             this.checked = checked
+
+           }
+           name  = ""
+            qty = ""
+           checked = false
+           }
+        
+        let checkItem = [{ name : "Biryani", checked : false},{ name : "Jalfrezi", checked : false},{ name : "White Karahi", checked : false},
+        { name : "Daal Maash", checked : false},{ name : "Paasta", checked : false},{ name : "Salad", checked : false},{ name : "Raita", checked : false},{ name : "Chai", checked : false},]
+
+
+        let stringArray = localStorage.getItem("fDishes");
+        let js_dishes_array = JSON.parse(stringArray);
+        let lsItems = js_dishes_array.map((item) => {
+
+            return new DishArray(item.name,item.qty,item.checked)
+        })
+
+        console.log(lsItems)
+
+        for (let dish of js_dishes_array) {
+
+           let dRow = findDishRow(dish.name)
+           dRow.querySelector('.dish').checked = true;
+           dRow.querySelector('input').value = dish.qty;
+           dRow.style.background = "green";
+         
+
+        }
+
+        function findDishRow(dishName) {
+
+            let dishes = document.getElementsByClassName('dish');
+
+            for (let dish of dishes) {
+
+                let dName = dish.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+
+                if (dishName == dName) {
+                    return dish.parentNode.parentNode;
+                }
+
+            }
+
+        }
+
+  
+
+    
+
+        function calculateBill() {
+            let dishes = document.getElementsByClassName('dish');
+            let bill = 0;
+            let discount = 0;
+
+            for (let dish of dishes) {
+                if (!dish.checked) {
+                    dish.parentNode.parentNode.style.background = "white";
+                }
+
+
+                if (dish.checked) {
+                    let dishName =  dish.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+                    let price = dish.parentNode.previousElementSibling.previousElementSibling.innerText;
+                    let qty = dish.parentNode.previousElementSibling.firstChild.value;
+                
+
+                    let orderedDish = new DishArray(dishName,qty,true);
+
+
+                    orderedDishes.push(orderedDish);
+                    checkItem.forEach((item) => {
+                        if(item.name == dishName){
+                            item.checked =true
+                        }
+
+                    })
+
+                    if (qty == 0) {
+                        alert("You did not have enter any quantity")
+                        dish.checked = false;
+                    } else {
+                        dish.parentNode.parentNode.style.background = "green";
+                        bill += price * qty;
+
+                        if (dish.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.innerText == "Biryani") {
+
+                            raitanumber.value = qty;
+                            raitacheckbox.checked = true;
+                        }
+
+                    }
+
+                }
+
+            }
+
+            localStorage.setItem("fDishes", JSON.stringify(orderedDishes));
+
+            let gst = bill * 0.08;
+            let netBill = bill + gst;
+
+            if (bill > 1200) {
+                discount = bill * 0.10;
+                netBill = bill - discount;
+            }
+
+            totalBill.innerText = bill;
+            discountBox.innerText = discount;
+            netBillBox.innerText = netBill;
+            gstbox.innerText = gst;
+            console.log(checkItem.every(item => item.checked));
+            checkItem.forEach((item) => {
+                        
+                            item.checked =false
+                       
+
+                    })
+        }
+       
+
+
+    </script>
+
+</body>
+
+</html>

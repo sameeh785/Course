@@ -1,0 +1,22 @@
+import React, { useState } from 'react';
+
+
+
+export default function Dish(props) {
+
+    return <tr style={{ backgroundColor: props.dish.ordered ? "skyblue" : "transparent" }}>
+        <td>{props.dish.name}</td>
+        <td>{props.dish.price}</td>
+        <td><input defaultValue={props.dish.qty} type="number" onChange={(evt) => {
+
+            props.onQuantityChanged(props.dish.name, evt.target.value);
+
+        }} /></td>
+        <td><input  defaultChecked={props.dish.ordered} type="checkbox" onChange={(evt) => {
+
+            props.onDishOrdered(props.dish.name, evt.target.checked);
+
+        }} /></td>
+    </tr>
+
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let students = [
+            {
+                name: "ali", status: "pass", courses:['BSCS', 'MBA'],
+            },
+            {
+                name: "ahmed", status: "pass", courses:['BSCS', 'MBBS'],
+            },
+            {
+                name: "aresha", status: "fail", courses:['MIT', 'BSCS'],
+            },
+            {
+                name: "rameez", status: "pass", courses:['BSCS', 'MIT'],
+            }
+        ];
+
+        console.log(students.every(item => item.status == 'pass'))
+        console.log(students.every(item => item.courses.includes('BSCS')))
+        console.log(students.some(item => item.courses.includes('BSCS')))
+
+
+    </script>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        class Student{
+            constructor(name, address, email, roll){
+
+                this.name = name;
+                this.address = address;
+                this.email = email;
+                this.roll = roll;
+            }
+
+            name = ""
+            email = ""
+            address = ""
+            roll = ""
+
+            sayHello = () => {
+                console.log(s1.name);
+            }
+        }
+        let s1 = new Student('umar' , '@gmail.com' , '123' , '36');
+        s1.name;
+        s1.sayHello();
+        
+            
+    </script>
+</body>
+</html> -->

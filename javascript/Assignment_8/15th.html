@@ -1,0 +1,279 @@
+
+
+
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+    </style>
+
+    <script>
+
+
+    </script>
+
+</head>
+
+<body>
+
+    <table border="1">
+        <tr id="birani">
+
+            <td>Biryani</td>
+            <td>150</td>
+            <td><input value="0"  onchange="local1(event)" type="number" /></td>
+            <td><input onchange="local(event)" class="dish" type="checkbox" /></td>
+        </tr>
+        <tr id="Jalfrezi">
+            <td>Jalfrezi</td>
+            <td>300</td>
+            <td><input value="0" onchange="local1(event)" type="number" /></td>
+            <td><input onchange="local(event)" class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr id="WhiteKarahi">
+            <td>White Karahi</td>
+            <td>1400</td>
+            <td><input value="0" onchange="local1(event)" type="number" /></td>
+            <td><input  onchange="local(event)" class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr id="DaalMaash">
+            <td>Daal Maash</td>
+            <td>130</td>
+            <td><input value="0" onchange="local1(event)" type="number" /></td>
+            <td><input onchange="local(event)" class="dish" type="checkbox" /></td>
+        </tr>
+        <tr id="Paasta">
+            <td>Paasta</td>
+            <td>450</td>
+            <td><input value="0" onchange="local1(event)" type="number" /></td>
+            <td><input onchange="local(event)" class="dish" type="checkbox" /></td>
+        </tr>
+        <tr id="Salad">
+            <td>Salad</td>
+            <td>50</td>
+            <td><input value="0" onchange="local1(event)" type="number" /></td>
+            <td><input onchange="local(event)" class="dish" type="checkbox" /></td>
+        </tr>
+        <tr id="Raita">
+            <td>Raita</td>
+            <td>30</td>
+            <td><input id="raitanumber"  onchange="local1(event)" value="0" type="number" /></td>
+            <td><input onchange="local(event)"  id="raitacheckbox" class="dish" type="checkbox" /></td>
+        </tr>
+        <tr id="Chai">
+            <td>Chai</td>
+            <td>30</td>
+            <td><input value="0"  onchange="local1(event)"type="number" /></td>
+            <td><input onchange="local(event)" class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr>
+            <td><button onclick="calculateBill()">Calculate Bill</button></td>
+            <td colspan="3">
+                <b>Total Bill</b>
+                <span id="totalBill"></span>
+                <b>Discount</b>
+                <span id="discountBox"></span>
+                <b>GST</b>
+                <span id="gstbox"></span>
+                <b>Net Bill</b>
+                <span id="netBillBox"></span>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+          let dishes1 = ["Chai","Raita","Salad","Daal Maash"];
+          let dishes2 = ["Biryani","Jalfrezi","White Karahi","Paasta"];
+        let orderedDishes = [];
+        let stringArray = localStorage.getItem("fDishes");
+        orderedDishes = JSON.parse(stringArray) || [];
+        if(orderedDishes){
+
+        for (let dish of orderedDishes) {
+
+           let dRow = findDishRow(dish.name)
+           dRow.querySelector('.dish').checked = true;
+           dRow.querySelector('input').value = dish.qty;
+           dRow.style.background = "green";
+          console.log(dRow);
+
+        }
+        }
+
+        function findDishRow(dishName) {
+
+            let dishes = document.getElementsByClassName('dish');
+
+            for (let dish of dishes) {
+
+                let dName = dish.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+
+                if (dishName == dName) {
+                    return dish.parentNode.parentNode;
+                }
+
+            }
+
+        }
+
+        function local(e){
+            if(e.target.checked){
+
+                  let orderedDish = {
+                        name: e.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.innerText,
+                        qty : e.target.parentNode.previousElementSibling.firstChild.value,
+                    };
+                    e.target.parentNode.parentNode.style.background = "green";
+                    orderedDishes.push(orderedDish);
+                    localStorage.setItem("fDishes", JSON.stringify(orderedDishes));
+
+            }
+            if(e.target.checked == false){
+                localStorage.removeItem("fDishes");
+                let index;
+                for(let i=0;i < orderedDishes.length ; i++){
+            if(orderedDishes.name =  e.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.innerText){
+                index = i;
+                break;
+            }
+                }
+                orderedDishes.splice(index,1);
+                localStorage.setItem("fDishes", JSON.stringify(orderedDishes));
+
+
+            }
+        
+        }
+
+
+        function  local1(e){
+            if(e.target.parentNode.nextElementSibling.firstChild.checked){
+                let value1 = e.target.value;
+                for(let i=0; i< orderedDishes.length; i++){
+                    if(orderedDishes[i].name == e.target.parentNode.previousElementSibling.previousElementSibling.innerText){
+                        orderedDishes[i].qty = value1;
+                        localStorage.removeItem("fDishes");
+                        console.log(orderedDishes);
+                        localStorage.setItem("fDishes", JSON.stringify(orderedDishes));
+                        break;
+
+                    }
+                }
+            }
+        }
+
+    
+
+        function calculateBill() {
+            let dishes = document.getElementsByClassName('dish');
+            let bill = 0;
+            let discount = 0;
+            let veg = [];
+            let nonVeg = [];
+           
+
+            for (let dish of dishes) {
+                if (!dish.checked) {
+                    dish.parentNode.parentNode.style.background = "white";
+                }
+
+
+                if (dish.checked) {
+
+                    let price = dish.parentNode.previousElementSibling.previousElementSibling.innerText;
+                    let dishName = dish.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+                    let qty = dish.parentNode.previousElementSibling.firstChild.value;
+
+                    for(let i= 0 ; i < dishes1.length;i++){
+                        if(dishName === dishes1[i]){
+                            veg.push(dishName);
+                            break;
+                        }
+                    }
+                    for(let i= 0 ; i < dishes2.length;i++){
+                        if(dishName === dishes2[i]){
+                            nonVeg.push(dishName);
+                            break;
+                        }
+                    }
+
+                    // let orderedDish = {
+                    //     name: dish.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.innerText,
+                    //     qty
+                    // };
+
+                    // orderedDishes.push(orderedDish);
+
+
+                    if (qty == 0) {
+                        alert("You did not have enter any quantity")
+                        dish.checked = false;
+                    } else {
+                        dish.parentNode.parentNode.style.background = "green";
+                        bill += price * qty;
+
+                        if (dish.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.innerText == "Biryani") {
+
+                            raitanumber.value = qty;
+                            raitacheckbox.checked = true;
+                        }
+
+                    }
+
+                }
+           
+            }
+
+            // localStorage.setItem("fDishes", JSON.stringify(orderedDishes));
+
+            let gst = bill * 0.08;
+            let netBill = bill + gst;
+
+            if (bill > 1200) {
+                discount = bill * 0.10;
+                netBill = bill - discount;
+            }
+            let billObjec = {
+                bill,
+                netBill,
+                gst,
+                discount,
+                nonVeg,
+                veg
+            }
+
+            totalBill.innerText = bill;
+            discountBox.innerText = discount;
+            netBillBox.innerText = netBill;
+            gstbox.innerText = gst;
+            console.log(billObjec);
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

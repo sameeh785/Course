@@ -1,0 +1,145 @@
+.head{
+    background-color: #7b1fa2;
+    height: 65px;
+    width: 100vw;
+}
+#logo{
+   display: inline-block;
+   margin-left: 60px;
+   padding-top: 17px;
+   
+
+}
+#head{
+    list-style: none;
+    display: inline;
+    float: right;
+    margin-right: 90px;
+}
+#head li{
+    display: inline;
+    color: white;
+    margin-left:  14px;
+    font-size: 18px;
+}
+ol{
+    list-style: none;
+    display: inline;
+    float: right;
+    margin-right: 230px;
+}
+ol li{
+    display: inline;
+    color: white;
+    margin-left:  20px;
+    font-size: 18px;
+}
+
+#left-footer{
+    list-style: none;
+    display: inline-block;
+    margin-top: 18px;
+    margin-left: 161px;
+}
+#left-footer li{
+    display: inline;
+    font-size: 18px;
+    color: #b99be7;
+   
+
+}
+.item{
+    padding-left: 18px;
+
+}
+
+#section2{
+    width: 100vw;
+    height: 450px;
+ 
+}
+#card1{
+    display: inline-block;
+    vertical-align: top;
+    height: 310px;
+    width: 23vw;
+    background-color:white;
+    margin-top: 50px;
+    margin-left: 60px;
+}
+#card1 img{
+    width: 100%;
+    
+}
+#card2{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 50px;
+
+    height: 310px;
+    width: 23vw;
+    background-color: white;
+    margin-left: 140px;
+}
+#card2 img{
+    width: 100%;
+    
+}
+#card3{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 50px;
+
+    height: 350px;
+    width: 23vw;
+    background-color: white;
+    margin-left: 140px;
+}
+#card3 img{
+    width: 100%;
+    
+}
+
+#section3{
+    width: 100vw;
+    height: 340px;
+    background-color:white;
+   
+
+
+}
+#contact-left{
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    box-shadow: 1px 1px 2px gray;
+ 
+    width: 40%;
+    background-color: white;
+    margin-left: 60px;
+}
+#contact-left:first-child{
+    font-size : 30px;
+    font-weight: bold;
+  
+}
+#innertxt{
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 120%;
+    margin-left: 30px;
+
+}
+#contact-right{
+    display: inline-block;
+    vertical-align: top;
+    box-shadow: 1px 1px 2px gray;
+    width: 50%;
+    height: 100%;
+    background-color: white;
+}
+#contact-right img{
+    float: right;
+    height: 100%;
+    margin-right : 30px
+}

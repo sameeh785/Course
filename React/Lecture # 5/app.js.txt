@@ -1,0 +1,136 @@
+import React, { useState } from 'react';
+
+import Dish from './components/dish/dish';
+
+export default function App() {
+
+
+    let lsData = JSON.parse(localStorage.getItem('orders'))
+
+
+
+    let [dishes, setDishes] = useState([
+        {
+            name: "Biryani",
+            price: 250,
+            ordered: false
+        },
+        {
+            name: "Soup",
+            price: 450,
+            ordered: false
+        },
+        {
+            name: "Shawrma",
+            price: 100,
+            ordered: false
+        },
+        {
+            name: "Daal Maash",
+            price: 150,
+            ordered: false
+        }
+    ]);
+
+ if(lsData){
+   lsData.forEach((savedDish)=>{
+
+        let targetDish = dishes.find((dish)=>{
+            return savedDish.name == dish.name;
+        });
+
+        targetDish.ordered = true;
+        targetDish.qty = savedDish.qty;
+        
+
+    });}
+
+
+    // let passStatus =  "pass";
+    // let failStatus =  "fail";
+
+
+    // let marks = 100;
+    // let result = marks > 50 ? passStatus : failStatus;
+
+    // if(marks > 50){
+    //     result ="pass";
+    // }else{
+    //     result ="fail";
+    // }
+
+    let [totalBill, setTotalBill] = useState(0)
+    let [discountBill, setDiscountBill] = useState(0)
+
+
+    function onDishOrdered(name, status) {
+
+        console.log(name, status)
+
+        let targetDish = dishes.find((dish) => {
+            return dish.name == name;
+        });
+
+        targetDish.ordered = status
+
+    }
+
+    function onQuantityChanged(name, qty) {
+        console.log(name, qty)
+
+        let targetDish = dishes.find((dish) => {
+            return dish.name == name;
+        });
+
+        targetDish.qty = qty;
+
+    }
+
+    function calculateTotalBill() {
+
+        let totalBill = 0;
+        let orderedDishes = [];
+
+        dishes.forEach((dish) => {
+
+            if (dish.ordered) {
+                orderedDishes.push(dish);
+                totalBill += dish.price * dish.qty;
+            }
+
+        });
+
+        setTotalBill(totalBill);
+
+
+        localStorage.setItem("orders", JSON.stringify(orderedDishes) );
+
+        totalBill > 500 && setDiscountBill(totalBill * .1);
+
+    }
+
+    return <div>
+        <table border="1">
+            {dishes.map((dish) => {
+
+                return <Dish onQuantityChanged={onQuantityChanged} onDishOrdered={onDishOrdered} dish={dish} />;
+
+            })}
+            <tr>
+                <td>
+                    <button onClick={calculateTotalBill}>Caculate BIll</button>
+                </td>
+                {totalBill > 0 ? <td>
+                    <span>Total Bill</span>
+                    <span>{totalBill}</span>
+                    <span>Discount</span>
+                    <span>{discountBill}</span>
+                    <span>Net Bill</span>
+                    <span>{totalBill - discountBill}</span>
+                </td> : null}
+            </tr>
+        </table>
+    </div>
+}
+
+

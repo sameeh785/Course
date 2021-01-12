@@ -1,0 +1,37 @@
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Login from './login';
+import Signup from './signup';
+import Header from './header';
+import { Provider, connect } from 'react-redux'
+
+import store from './store/store';
+
+import UsersList from './card';
+
+
+export default function () {
+
+    return <Provider store={store}>
+        <div>
+            <BrowserRouter>
+
+                <Header />
+
+                <UsersList />
+
+                <Route path="/signup" component={Signup} />
+
+
+
+            </BrowserRouter>
+        </div>
+    </Provider>
+
+}
+
+
+// we used provider when we want to connect our child component to the store so that they are able to get the data from the store
+
+
+

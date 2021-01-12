@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+   <style>
+        .a1{
+        background-color: blue;
+    }
+    .as{
+        width: 100vw;
+        height: 100vh;
+    }
+
+   </style>
+
+</head>
+
+<body onclick="sami()" class="as">
+    <!-- asdlksa -->
+
+
+    <ol id="myContainer">
+
+    </ol>
+
+
+    <script>
+
+         
+
+        let data = [
+            {
+                name: "Ahmed"
+            },
+            {
+                name: "ALi"
+            },
+            {
+                name: "Rameez"
+            },
+            {
+                name: "Sadia"
+            }
+        ];
+
+
+        let allTags = data.map(function (item) {
+
+            return "<li>" + item.name + "</li>"
+
+        });
+
+        myContainer.innerHTML = allTags.join('');
+
+       lii = document.querySelectorAll("li");
+   
+       console.log(lii)
+     for(i=0 ; i < lii.length ; i++){
+         lii[i].onclick = function(event){
+            event.stopPropagation();
+             let prevoius = document.querySelector('.a1');
+             if(prevoius != null){
+                prevoius.classList.remove('a1')
+             }
+             console.log(lii[i])
+             lii[i].classList.add('a1');
+             
+         }
+     }
+    
+//  lii.forEach((item) => {
+//     item.onclick = function(event){
+//         event.stopPropagation();
+//              let prevoius = document.querySelector('.a1');
+//              if(prevoius != null){
+//                 prevoius.classList.remove('a1')
+//              }
+            
+//              event.target.classList.add('a1');
+//          }
+//  });
+
+
+ function sami(){
+    // let prevoius = document.querySelector('.a1');
+    let prevoius = document.querySelector('.a1');
+             if(prevoius != null){
+                prevoius.classList.remove('a1')
+             }
+}
+
+
+
+        // let a = ["ahmed", "ali", "maria"];
+
+        // let newS = a.map(item => "hello " + item);
+        // let newS = a.map(item => item * item);
+
+        // let newS = [];
+
+        // a.forEach(function (item) {
+
+        //     let square = item * item;
+        //     newS.push(square);
+
+            // let liItem = document.createElement('li');
+            // liItem.innerText = item.name;
+
+            // myContainer.appendChild(liItem);
+
+        // });
+
+            // let nums = [6, 7, 3, 4];
+
+            // let newNums = nums.filter(function (item, inde) {
+
+            //     let heading =  document.createElement('h1');
+            //     heading.innerText = "My number "+inde;
+
+            //     document.body.appendChild(heading);
+
+
+            //     return item > 5;
+            // });
+
+            // // let newNums = [];
+
+            // // nums.forEach(function (item, ind) {
+
+            // //     if (item > 5) {
+            // //         newNums.push(item);
+            // //     }
+
+            // // });
+
+            // console.log(newNums);
+
+
+            // // let data = sumNumbers(1,2,3,4,5,7,8,9,10,11);
+
+            // // console.log(data);
+
+            // // function sumNumbers(...nums) {
+
+            // //     let total = 0;
+
+            // //     for(let num of nums){
+
+            // //         total += num;
+            // //     }
+
+            // //     return total;
+            // //     // code likhna h
+
+            // // }
+
+    </script>
+
+</body>
+
+</html>

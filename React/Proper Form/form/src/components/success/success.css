@@ -1,0 +1,17 @@
+
+ 
+#display-success
+{
+width: 100%;
+border: 1px solid #D8D8D8;
+padding: 10px;
+border-radius: 5px;
+font-family: Arial;
+font-size: 60px;
+text-transform: uppercase;
+background-color: rgb(236, 255, 216);
+color: #26a69a;
+text-align: center;
+margin-top: 120px;
+}
+ 

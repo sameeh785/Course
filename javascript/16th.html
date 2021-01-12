@@ -1,0 +1,357 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+        .selected{
+        background-color: orange;
+    }
+    
+    </style>
+</head>
+
+<body>
+   
+
+    <form>
+        <div>
+            <input id="name1" type="text" placeholder="name">
+        </div>
+        <div>
+            <input id="city" type="text" placeholder="city">
+        </div>
+        <div>
+            <input id="program" type="text" placeholder="program">
+        </div>
+        <button onclick="addUser()" type="button">Save</button>
+    </form>
+
+
+
+    <table id="myUser" border="1">
+
+
+
+    </table>
+
+
+    <script>
+
+        let users = [];
+
+        function addUser() {
+
+            let user = {
+                name: name1.value,
+                city: city.value,
+                program: program.value,
+            };
+
+            users.push(user);
+
+            displayUsers();
+
+
+        }
+
+        function displayUsers() {
+
+            myUser.innerHTML = "";
+
+             users.forEach(function(user,index){
+           // for (let user of users) {
+
+                let tr = document.createElement('tr');
+                tr.onclick = function () {
+
+                    let preiousSelected = document.querySelector('.selected');
+
+                    if (preiousSelected != null) {
+                        preiousSelected.classList.remove('selected');
+                    }
+
+                    tr.classList.add('selected');
+
+                }
+
+                let nameCell = document.createElement('td');
+                nameCell.innerText = user.name;
+
+                let cityCell = document.createElement('td');
+                cityCell.innerText = user.city;
+
+                let programCell = document.createElement('td');
+                programCell.innerText = user.program;
+                
+                let del = document.createElement('td');
+                let icon = document.createElement('img');
+                icon.src = "./c.png"
+                icon.width = "10"
+                icon.onclick = function(event){
+                   users.splice(index,1);
+                   displayUsers();
+                }
+                
+              
+
+                tr.appendChild(nameCell);
+                tr.appendChild(cityCell);
+                tr.appendChild(programCell);
+                tr.appendChild(del);
+                del.appendChild(icon);
+
+
+                myUser.appendChild(tr);
+            });
+
+            // });
+
+
+        }
+
+
+
+    </script>
+
+</body>
+
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+        .selected{
+        background-color: orange;
+    }
+    .a1{
+        display: none;
+    }
+    
+    </style>
+</head>
+
+<body onclick="unselectItem()">
+
+    <form>
+        <div>
+            <input id="name1" type="text" placeholder="name">
+        </div>
+        <div>
+            <input id="city" type="text" placeholder="city">
+        </div>
+        <div>
+            <input id="program" type="text" placeholder="program">
+        </div>
+        <button onclick="addUser()" type="button">Save</button>
+        <button id="editUserBtn" style="display:none" onclick="editUser()" type="button">Edit</button>
+    </form>
+
+
+
+    <table id="myUser" border="1">
+
+
+
+    </table>
+
+
+    <script>
+
+        let users = [];
+
+
+        function unselectItem() {
+
+            sIndex = null;
+
+            let preiousSelected = document.querySelector('.selected');
+
+            if (preiousSelected != null) {
+                preiousSelected.classList.remove('selected');
+            }
+
+
+        }
+
+        function editUser() {
+
+
+            // if(users[sIndex] == undefined){
+            //     alert("plase select a auser");
+            //     return;
+            // }
+
+            let name = prompt();
+            let city = prompt();
+            let program = prompt();
+
+            users[sIndex].name = name;
+            users[sIndex].city = city;
+            users[sIndex].program = program;
+
+            displayUsers();
+
+        }
+
+        function addUser() {
+
+            if (name1.value && city.value && program.value) {
+
+                let user = {
+                    name: name1.value,
+                    city: city.value,
+                    program: city.value,
+                };
+
+                users.push(user);
+
+                displayUsers();
+            } else {
+                alert("please fill up your form");
+            }
+
+
+        }
+
+        let sIndex;
+
+
+        function displayUsers() {
+
+            myUser.innerHTML = "";
+
+            // users.forEach(function(user){
+            for (let user of users) {
+
+                let tr = document.createElement('tr');
+                tr.onclick = function (evt) {
+
+                    evt.stopPropagation();
+
+                    sIndex = users.indexOf(user);
+
+                    editUserBtn.style.display = "";
+
+                    let preiousSelected = document.querySelector('.selected');
+
+                    if (preiousSelected != null) {
+                        preiousSelected.classList.remove('selected');
+                    }
+
+                    tr.classList.add('selected');
+
+                }
+
+                let nameCell = document.createElement('td');
+                // let span1 = document.createElement('span');
+                 nameCell.innerText = user.name;
+                 
+
+                let deleteCell = document.createElement('td');
+                let userIndex = users.indexOf(user);
+                deleteCell.innerHTML = "<button onClick='delFunction(" + userIndex + ")'>Delete User</button>";
+
+                let cityCell = document.createElement('td');
+                // let span2 = document.createElement('span');
+                cityCell.innerText = user.city;
+                
+
+                let programCell = document.createElement('td');
+                // let span3 = document.createElement('span');
+                programCell.innerText = user.program;
+               
+
+                let editCell = document.createElement('td');
+                editCell.innerHTML = "<button onClick='editFunction(event" + "," + userIndex + ")'>Edit User</button>";
+
+
+                tr.appendChild(nameCell);
+                tr.appendChild(cityCell);
+                tr.appendChild(programCell);
+                tr.appendChild(deleteCell);
+                tr.appendChild(editCell);
+
+                myUser.appendChild(tr);
+            }
+
+            // });
+
+
+        }
+
+        function delFunction(userIndex) {
+
+
+            if (window.confirm("Are u sure want to delte this")) {
+
+                event.stopPropagation();
+                users.splice(userIndex, 1);
+                displayUsers();
+
+                // editUserBtn.style.display = "none";
+
+            }
+
+
+        }
+       
+         function editFunction(e,userIndex){
+                
+
+                e.target.parentNode.previousElementSibling.classList.add('a1');
+                e.target.parentNode.previousElementSibling.previousElementSibling.classList.add('a1');
+                e.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.classList.add('a1');
+                e.target.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.classList.add('a1');
+           
+                let nameCell = document.createElement('td');
+                nameCell.innerHTML = '<input id="name2" type="text" placeholder="name">'
+
+                let deleteCell = document.createElement('td');
+                deleteCell.innerHTML = "<button onClick='delFunction(" + userIndex + ")'>Delete User</button>";
+
+                let cityCell = document.createElement('td');
+                cityCell.innerHTML = '<input id="city2" type="text" placeholder="city">';
+
+                let programCell = document.createElement('td');
+                programCell.innerHTML =  '<input id="program2" type="text" placeholder="program">';
+
+                let saveCell = document.createElement('td');
+                saveCell.innerHTML = "<button onClick='saveFunction( " + userIndex + ")'>Save User</button>";
+               console.log(e.target.parentNode.parentNode);
+                e.target.parentNode.parentNode.appendChild(nameCell);
+                e.target.parentNode.parentNode.appendChild(cityCell);
+                e.target.parentNode.parentNode.appendChild(programCell);
+                e.target.parentNode.parentNode.appendChild(deleteCell);
+                e.target.parentNode.parentNode.appendChild(saveCell);
+                e.target.parentNode.classList.add("a1")
+         }
+         function saveFunction(index1){
+                 users[index1].name = name2.value;
+                 users[index1].city = city2.value;
+                 users[index1].program = program2.value;
+                 displayUsers();
+
+         }
+
+
+    </script>
+
+</body>
+
+</html>

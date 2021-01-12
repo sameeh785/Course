@@ -1,0 +1,191 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cal {
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body onkeydown="getNumber(event)">
+    <div class="cal" onclick="display(event)">
+
+        <div>
+            <input type="text" id="numPannel">
+        </div>
+        <div class="btn" onabort="display(event)"  >
+
+            <div>
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>/</button>
+            </div>
+            <div>
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>*</button>
+            </div>
+            <div>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>-</button>
+            </div>
+            <div>
+                <button>C</button>
+                <button>0</button>
+                <button>=</button>
+                <button>+</button>
+            </div>
+        </div>
+    </div>
+ 
+    <ol id="list">
+         
+    </ol>
+
+    <script>
+
+         let listStore = [];
+
+        function displayList(){
+           
+          let listItems=JSON.parse(localStorage.getItem('list'));
+        
+          if (listItems != null){
+          listStore = listStore.concat(listItems)
+          listItems.forEach((item) => {
+            let listItem = document.createElement('li');
+                listItem.innerText = item;
+                list.appendChild(listItem);
+
+          });
+          }
+
+        }
+        displayList();
+
+        function getNumber(evt) {
+           
+            
+            let str = numPannel.value;
+
+            let operations = ['+', '-', '/', '*'];
+            let value1 = ['1','2','3','4','5','6','7','8','9','0','+', '-', '/', '*'];
+
+         
+
+            let lastCharacter = numPannel.value[numPannel.value.length - 1];
+            if(evt.key == 'Backspace'){
+             let remove = numPannel.value;
+             numPannel.value = remove.slice(0,remove.length - 1);
+
+      
+            }
+
+            if (evt.key == "Enter") {
+
+
+                numPannel.value = eval(numPannel.value);
+                listStore.push(numPannel.value);
+                localStorage.setItem("list",JSON.stringify(listStore))
+
+                let listItem = document.createElement('li');
+                listItem.innerText = numPannel.value;
+                list.appendChild(listItem);
+
+
+            } else {
+
+                if(value1.includes(evt.key)){
+
+                if(operations.includes(evt.key) && numPannel.value == ""){
+
+                }
+                else{
+                if (operations.includes(lastCharacter) && operations.includes(evt.key)) {
+
+
+                }else{
+                    numPannel.value += evt.key;
+                    
+                }
+                }
+                }
+            
+
+
+            }
+
+
+            }
+            function display(evt){
+                evt.stopPropagation();
+                
+            
+            let str = numPannel.value;
+
+            let operations = ['+', '-', '/', '*'];
+            let value1 = ['1','2','3','4','5','6','7','8','9','0','+', '-', '/', '*']
+
+            let lastCharacter = numPannel.value[numPannel.value.length - 1];
+           
+
+            if (evt.target.innerText == "=") {
+
+
+                numPannel.value = eval(numPannel.value);
+                listStore.push(numPannel.value);
+                localStorage.setItem("list",JSON.stringify(listStore))
+                // localStorage.setItem("list",JSON.stringify(listStore))
+                // let firstArray = JSON.parse(localStorage.getItem("list"));
+                // let secondArray = firstArray.concat(listStore)
+                // localStorage.setItem("list",JSON.stringify(secondArray))
+                let listItem = document.createElement('li');
+                listItem.innerText = numPannel.value;
+                list.appendChild(listItem);
+
+            } else {
+
+                
+
+                if(operations.includes(evt.target.innerText) && numPannel.value == ""){
+
+                }
+                else{
+                if (operations.includes(lastCharacter) && operations.includes(evt.target.innerText)) {
+
+
+                }else{
+                    numPannel.value += evt.target.innerText;
+                    
+                }
+                }
+                }
+            
+
+
+            }
+
+            
+        
+    </script>
+</body>
+
+</html>
+
+

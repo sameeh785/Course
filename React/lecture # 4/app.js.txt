@@ -1,0 +1,92 @@
+
+import React, { useState } from 'react';
+
+import Dish from './components/dish/dish';
+import { readSync } from 'fs';
+
+export default function App() {
+
+    let dishes = [
+        {
+            name: "Biryani",
+            price: 250,
+            ordered: false
+        },
+        {
+            name: "Soup",
+            price: 450,
+            ordered: false
+        },
+        {
+            name: "Shawrma",
+            price: 100,
+            ordered: false
+        },
+        {
+            name: "Daal Maash",
+            price: 150,
+            ordered: false
+        }
+    ]
+
+
+    let [totalBill, setTotalBill] = useState(0)
+
+    function onDishOrdered(name, status) {
+
+        console.log(name, status)
+
+        let targetDish = dishes.find((dish) => {
+            return dish.name == name;
+        });
+
+        targetDish.ordered = status
+
+    }
+
+    function onQuantityChanged(name, qty) {
+        console.log(name, qty)
+
+        let targetDish = dishes.find((dish) => {
+            return dish.name == name;
+        });
+
+        targetDish.qty = qty;
+
+    }
+
+    function calculateTotalBill() {
+
+        let totalBill = 0;
+
+        dishes.forEach((dish) => {
+
+            if(dish.ordered){
+                totalBill += dish.price * dish.qty;
+            }
+
+         });
+
+         setTotalBill(totalBill);
+
+    }
+
+    return <div>
+        <table border="1">
+            {dishes.map((dish) => {
+
+                return <Dish onQuantityChanged={onQuantityChanged} onDishOrdered={onDishOrdered} dish={dish} />;
+
+            })}
+            <tr>
+                <td>
+                    <button  onClick={calculateTotalBill}>Caculate BIll</button>
+                </td>
+                {totalBill > 0 ? <td>
+                    <span>Total Bill</span>
+                    <span>{totalBill}</span>
+                </td> : null}
+            </tr>
+        </table>
+    </div>
+}
