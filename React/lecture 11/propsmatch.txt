@@ -1,0 +1,225 @@
+import { createStore, combineReducers } from 'redux';
+
+let initialUserData = {
+    users: [],
+    currentUser: null
+}
+
+function usersSection(state = initialUserData, action) {
+
+    if (action.type == "USER_ADDING") {
+        state.users.push({ name: action.name })
+    } else if (action.type == "USER_DELETE") {
+        state.users.splice(action.xIndex, 1)
+    } else if (action.type == "USER_LOGIN") {
+
+        let targetUser = state.users.find((user) => {
+            return user.username == action.username && user.password == action.password
+        })
+
+        if (targetUser) {
+
+            state.currentUser = targetUser;
+            action.history.push('/dashboard')
+
+
+        } else {
+            alert("no user")
+        }
+
+
+    } else if (action.type == "USER_LOGOUT") {
+        state.currentUser = null;
+        action.history.push('/login')
+    }
+
+    return state;
+
+}
+
+let initialProductData = {
+    products: []
+}
+
+function productsSection(state, action) {
+
+
+
+    return { name: "Khurram" };
+
+}
+
+let allSections = combineReducers({ usersSection, productsSection });
+
+
+let myStore = createStore(allSections);
+
+export default myStore;
+
+
+
+
+login.js*****************************
+
+
+
+import React, { useState } from 'react';
+import Axios from 'axios';
+import { Link } from 'react-router-dom';
+
+import { store } from './store';
+
+{/* <Chatbox /> */ }
+
+
+export default class Login extends React.Component {
+
+
+    updateValue = (evt) => {
+
+
+        this.setState({
+            [evt.target.id]: evt.target.value
+        })
+
+    }
+
+    login = (evt) => {
+
+
+        evt.preventDefault();
+
+        store.dispatch({
+            history:this.props.history,
+            type:"USER_LOGIN",
+            username:this.state.username,
+            userPassword:this.state.userPassword
+        });
+
+
+    }
+
+
+    render = () => {
+
+        return <form onSubmit={this.login} action="">
+
+            <Link to="/gc/student/admission">Dashboard</Link>
+            <Link to="/gc/teacher/admission">Teacher</Link>
+
+            <div>
+                <input onChange={this.updateValue} id="userName" type="text" placeholder="Name" />
+            </div>
+
+            <div>
+                <input onChange={this.updateValue} id="userPassword" type="text" placeholder="Password" />
+            </div>
+
+            <button >Login</button>
+        </form>
+    }
+
+}
+
+
+dasboard.js******************************
+
+import React, { useState, useEffect } from 'react';
+
+import { Provider, connect } from 'react-redux'
+import mStore from './store/store';
+
+import Product from './card';
+import { func } from 'prop-types';
+
+function UserForm() {
+
+    return <div>
+        <div>
+            <input id="myName" type="text" />
+            <button onClick={()=>{
+
+            mStore.dispatch({
+                type:"USER_ADDING",
+                name:document.getElementById('myName').value
+            });
+
+            }}>Add Text</button>
+        </div>
+
+    </div>
+
+}
+
+
+function Dashboard(props){
+
+    return <h1>{
+        props.usersSection.currentUser.name
+    }</h1>;
+
+}
+
+let NewDashboard = connect((store)=>{
+    return store;
+})(Dashboard)
+
+export default function () {
+
+    return <div>
+        <Provider store={mStore}>
+
+
+    <Route path="/dashboard" component={NewDashboard} />
+
+            <UserForm />
+            <Product />
+
+        </Provider>
+
+    </div>
+
+}
+
+
+signup******************
+
+import React from 'react';
+import axios from 'axios';
+import store from './store/store';
+
+export default class Signup extends React.Component {
+
+    signup = (evt) => {
+
+        evt.preventDefault();
+      
+  
+
+       
+    }
+
+    updateValue = (evt)=>{
+
+
+        this.setState({
+            [evt.target.id]:evt.target.value
+        })
+
+    }
+
+    render = () => {
+
+        return <form  onSubmit={this.signup} action="">
+            <div>
+                <input onChange={this.updateValue} id="name" type="text" placeholder="Name" />
+            </div>
+            <div>
+                <input onChange={this.updateValue} id="userPassword" type="text" placeholder="Password" />
+            </div>
+
+            <button>Signup</button>
+        </form>
+    }
+
+}

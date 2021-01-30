@@ -1,0 +1,257 @@
+let mongoose = require('mongoose');
+
+
+let studentSchema =  mongoose.Schema({
+    name:String,
+    courses:[
+        {
+            type:mongoose.SchemaTypes.ObjectId,
+            ref:"course"
+        }
+    ],
+    password:String,
+    roll:Number,
+    address:{
+        streetNO:Number,
+        city:String
+    }
+});
+
+module.exports = mongoose.model("student", studentSchema);
+
+
+
+
+************************************
+
+
+
+// CommonJS format
+let express = require('express')
+let bodyParser = require('body-parser');
+let fs = require('fs');
+
+let Student = require('./db/student');
+
+require('./db/config');
+
+var multer = require('multer')
+
+let users = [];
+
+var storage = multer.diskStorage({
+    destination: function (req, file, next) {
+
+        let flag = users.find(function (user) {
+            return user.name == req.body.name;
+        })
+
+
+        if (flag) {
+            next(new Error("user alreadys"))
+        } else {
+
+            let path = './server2/users/' + req.body.userID;
+            fs.mkdirSync(path);
+            next(null, path)
+        }
+    },
+    filename: function (req, file, next) {
+
+        next(null, file.originalname)
+    }
+})
+
+var upload = multer({ storage: storage })
+
+let app = express();
+
+app.get('/', (req, res) => {
+    res.end("this is sgome")
+    // res.json({
+    //     game:"asds"
+    // })
+});
+
+// app.use(bodyParser.urlencoded());
+
+
+app.use(function (req, res, next) {
+    console.log("asdas")
+    next();
+});
+
+app.use(function (req, res, next) {
+    console.log("asdas")
+    next();
+});
+
+app.get('/data', (req, res) => {
+    res.end("adsads");
+});
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+
+
+app.post('/deleteuser', async (req, res) => {
+
+    await Student.remove({
+        name: req.body.name
+    });
+
+})
+
+app.post("/login", async (req, res) => {
+
+    let targetUser = await Student.findOne({
+        name: req.body.name,
+        password: req.body.password
+    });
+
+
+    res.json(targetUser);
+    // res.sendfile('./data.mp4');
+
+    // res.end("asdas");
+    // res.json({ name: "Gamica" })
+
+});
+
+
+
+app.get('/result/:roll', (req, res) => {
+
+    res.end(req.params.roll + " requested for result")
+
+})
+
+
+app.post('/updateuser', async (req, res) => {
+
+    try {
+
+        await Student.findByIdAndUpdate(req.body._id, req.body);
+
+        res.json({
+            succes: true
+        });
+
+    } catch (e) {
+
+        res.send(500, e);
+
+    }
+});
+
+app.delete('/deleteuser', async (req, res) => {
+
+    try {
+
+        await Student.findByIdAndRemove(req.query.abc);
+
+        res.json({
+            succes: true
+        });
+
+    } catch (e) {
+
+
+    }
+}
+);
+
+app.get('/getusers', async (req, res) => {
+
+    try {
+
+        let students = await Student.find();
+
+        res.json({
+            users: students
+        })
+
+    } catch (e) {
+
+    }
+
+
+})
+
+// upload.single('userFile')
+app.post("/signup", async (req, res) => {
+
+    try {
+
+        let newStudent = new Student(req.body);
+
+
+        // req.body.courses.forEach((course) => {
+
+            let newCourse = new Course(course);
+            
+            newCourse.save();
+            newStudent.courses.push(newCourse)
+
+
+        // })
+
+
+
+        await newStudent.save();
+
+        res.json(newStudent);
+
+        // console.log(req.body)
+        // users.push(req.body)
+        // console.log(abc);
+        // res.end("hello g");
+    } catch (e) {
+        res.send(500, { error: e.message });
+    }
+
+
+});
+
+
+app.use(function (error, req, res, next) {
+
+    res.send(500, error);
+
+})
+
+app.listen(8080, function () {
+    console.log("Start starting");
+})
+
+
+
+***************************
+
+
+
+
+let mongoose = require('mongoose');
+
+
+let courseSchema =  mongoose.Schema({
+    name:String,  
+    courseID:Number,
+    student:{
+        type:mongoose.SchemaTypes.ObjectId,
+        ref:"student"
+    }
+});
+
+module.exports = mongoose.model("course", courseSchema);
+
+
+
+
+================================******************************
+let students = await Student.find().populate("courses").exec();
+
+    <td>{user.courses.map((course) => {
+                            return course.name;
+                        })}</td>

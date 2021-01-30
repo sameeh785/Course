@@ -1,0 +1,11 @@
+axios.get('/login',
+            {
+                name: "usama",
+                pasword: "12334"
+            }
+        ).then((resp) => {
+
+            console.log(resp.data);
+            console.log("m pehly chla")
+
+        })

@@ -63,12 +63,11 @@ export default function(){
     <Route path="/signup" render={() =>{
       return <Signup submit={ submit} setVal={setValue} display={val} name={ namee} mail={maill} number={numberr} address={addresss} user={users} remove={removeUser}/>
     }}/>
+     <Route path="/signup"  component={Signup}/>
     <Route path="/login" render={() =>{
        return <Login userr={users}/>
     }}/>
-    <Route path='/dynamic/:name/:email' render ={(props) =>{
-         return <Dynamic user={users} {...props} Naaa = "samooo" />
-    }} />
+    <Route path='/dynamic/:name/:email' component={Dynamic} />
     </BrowserRouter>
  
   </div>

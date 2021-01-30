@@ -1,0 +1,9 @@
+.header-comp h1{
+    color:red;
+    margin:0;
+}
+
+.header-comp{
+    height: 100px;
+    background-color: orange;
+}

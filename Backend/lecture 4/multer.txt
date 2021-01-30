@@ -1,0 +1,145 @@
+import React from 'react';
+import { connect } from 'react-redux';
+
+// import store from './store/store';
+import { signup as sn } from './store/actions/auth';
+
+class Signup extends React.Component {
+
+
+    signup = (evt) => {
+
+        // this.props.history.push('/login')
+
+        evt.preventDefault();
+
+        let formData = new FormData()
+        formData.append('name', this.state.name);
+        formData.append('password', this.state.password);
+        formData.append('userFile',  this.state.userFile);
+
+        this.props.sn(formData, this.props.history)
+
+
+    }
+
+    updateValue = (evt) => {
+
+
+        this.setState({
+            [evt.target.id]: evt.target.files ? evt.target.files[0] : evt.target.value
+        })
+
+    }
+
+    render = () => {
+
+        return <form onSubmit={this.signup} action="">
+            <div>
+                <input onChange={this.updateValue} id="name" type="text" placeholder="Name" />
+            </div>
+            <div>
+                <input onChange={this.updateValue} id="userPassword" type="text" placeholder="Password" />
+            </div>
+            <div>
+                <input onChange={this.updateValue} id="userFile" type="file" placeholder="Password" />
+            </div>
+
+            <button>Signup</button>
+        </form>
+    }
+
+}
+
+export default connect((store) => {
+    return store
+}, { sn })(Signup)
+
+
+**********************************************************
+
+// CommonJS format
+let express = require('express')
+let bodyParser = require('body-parser');
+
+var multer = require('multer')
+
+var storage = multer.diskStorage({
+    destination: function (req, file, next) {
+        next(null, './server2/uploads')
+    },
+    filename: function (req, file, next) {
+        next(null, file.originalname)
+    }
+})
+
+var upload = multer({ storage: storage })
+
+let app = express();
+
+app.get('/', (req, res) => {
+    res.end("this is sgome")
+    // res.json({
+    //     game:"asds"
+    // })
+});
+
+// app.use(bodyParser.urlencoded());
+
+let users = [];
+app.use(function (req, res, next) {
+    console.log("asdas")
+    next();
+});
+
+app.use(function (req, res, next) {
+    console.log("asdas")
+    next();
+});
+
+app.get('/data', (req, res) => {
+    res.end("adsads");
+});
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+
+
+app.post("/login", (req, res) => {
+
+    let targetUser = users.find((user) => {
+        return user.name == req.body.name && user.password == req.body.password
+    });
+
+    res.json(targetUser);
+    // res.sendfile('./data.mp4');
+
+    // res.end("asdas");
+    // res.json({ name: "Gamica" })
+
+});
+
+
+
+app.get('/result/:roll', (req, res) => {
+
+    res.end(req.params.roll + " requested for result")
+
+})
+
+app.post("/signup", upload.single('userFile'), (req, res) => {
+
+    console.log(req.body)
+    users.push(req.body)
+    res.end("hello g");
+    // res.sendfile('./data.mp4');
+
+    // res.end("asdas");
+    // res.json({ name: "Gamica" })
+
+});
+
+app.listen(8080, function () {
+    console.log("Start starting");
+})

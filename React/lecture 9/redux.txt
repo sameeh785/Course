@@ -1,0 +1,137 @@
+import { createStore, combineReducers } from 'redux';
+
+let initialUserData = {
+    users: []
+}
+
+function usersSection(state = initialUserData, action) {
+
+    if (action.type == "USER_ADDING") {
+        state.users.push({ name: action.name })
+    } else if (action.type == "USER_DELETE") {
+        state.users.splice(action.xIndex, 1)
+    }
+
+    return state;
+
+}
+
+let initialProductData = {
+    products: []
+}
+
+function productsSection(state, action) {
+
+
+    
+    return { name: "Khurram" };
+
+}
+
+let allSections = combineReducers({ usersSection, productsSection });
+
+
+let myStore = createStore(allSections);
+
+export default myStore;
+
+
+
+********************************************
+
+
+
+import React from 'react';
+import { connect } from 'react-redux';
+import store from './store/store';
+
+function Product(props) {
+
+    return <div>
+        Thsi is child component
+        <h1>{props.productsSection.name} </h1>
+        <ol>
+            {
+                props.usersSection.users.map((user, index)=>{
+
+                    return <li onClick={()=>{
+
+                        store.dispatch({
+                            type:"USER_DELETE",
+                            xIndex:index
+                        })
+
+                    }}>{user.name}</li>
+
+                })
+            }
+        </ol>
+    </div>
+
+}
+
+export default connect(function(store){
+    return store;
+})(Product);
+
+// function connect(a, b) {
+
+//     return function () {
+
+//         return a + b;
+
+//     }
+
+// }
+
+// let fin =  connect(4, 5)()
+
+
+
+
+***********************************
+
+
+
+
+import React, { useState, useEffect } from 'react';
+
+import { Provider } from 'react-redux'
+import mStore from './store/store';
+
+import Product from './card';
+
+function UserForm() {
+
+    return <div>
+        <div>
+            <input id="myName" type="text" />
+            <button onClick={()=>{
+
+            mStore.dispatch({
+                type:"USER_ADDING",
+                name:document.getElementById('myName').value
+            });
+
+            }}>Add Text</button>
+        </div>
+
+    </div>
+
+}
+
+
+export default function () {
+
+    return <div>
+        <Provider store={mStore}>
+
+
+            <UserForm />
+            <Product />
+
+        </Provider>
+
+    </div>
+
+}

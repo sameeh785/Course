@@ -1,0 +1,163 @@
+  function downloadFile() {
+
+            return new Promise(function (success, error) {
+
+                setInterval(() => {
+
+                    console.log("i am chaling");
+
+                    success(55);
+
+                }, 2000);
+
+            });
+        }
+
+
+async function test() {
+
+      try {
+        let video = await downloadVideo()
+        let video1 = await encodeVideo(video)
+
+
+      } catch (e) {
+        console.log(e);
+      }
+
+    }
+
+    test()
+
+
+app.post("/signup", upload.single('userFile'), async (req, res) => {
+
+    try {
+        console.log(req.body)
+        users.push(req.body)
+        console.log(abc);
+        res.end("hello g");
+    } catch (e) {
+        res.send(500, { error: e.message});
+    }
+
+
+});
+
+
+
+
+
+
+**************************multer librray code *********************
+// CommonJS format
+let express = require('express')
+let bodyParser = require('body-parser');
+let fs = require('fs');
+
+var multer = require('multer')
+
+let users = [];
+
+var storage = multer.diskStorage({
+    destination: function (req, file, next) {
+
+        let flag = users.find(function (user) {
+            return user.name == req.body.name;
+        })
+
+
+        if (flag) {
+            next(new Error("user alreadys"))
+        } else {
+
+            let path = './server2/users/' + req.body.userID;
+            fs.mkdirSync(path);
+            next(null, path)
+        }
+    },
+    filename: function (req, file, next) {
+
+        next(null, file.originalname)
+    }
+})
+
+var upload = multer({ storage: storage })
+
+let app = express();
+
+app.get('/', (req, res) => {
+    res.end("this is sgome")
+    // res.json({
+    //     game:"asds"
+    // })
+});
+
+// app.use(bodyParser.urlencoded());
+
+
+app.use(function (req, res, next) {
+    console.log("asdas")
+    next();
+});
+
+app.use(function (req, res, next) {
+    console.log("asdas")
+    next();
+});
+
+app.get('/data', (req, res) => {
+    res.end("adsads");
+});
+
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+
+
+app.post("/login", (req, res) => {
+
+    let targetUser = users.find((user) => {
+        return user.name == req.body.name && user.password == req.body.password
+    });
+
+    res.json(targetUser);
+    // res.sendfile('./data.mp4');
+
+    // res.end("asdas");
+    // res.json({ name: "Gamica" })
+
+});
+
+
+
+app.get('/result/:roll', (req, res) => {
+
+    res.end(req.params.roll + " requested for result")
+
+})
+
+app.post("/signup", upload.single('userFile'), async (req, res) => {
+
+    try {
+        console.log(req.body)
+        users.push(req.body)
+        console.log(abc);
+        res.end("hello g");
+    } catch (e) {
+        res.send(500, { error: e.message });
+    }
+
+
+});
+
+
+app.use(function(error, req, res, next){
+
+    res.send(500, error);
+
+})
+
+app.listen(8080, function () {
+    console.log("Start starting");
+})

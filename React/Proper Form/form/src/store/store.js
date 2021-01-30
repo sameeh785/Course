@@ -1,5 +1,17 @@
-import {createStore} from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-let store = createStore();
+function userSection(state , action) {
+
+    return [{ name: "Ali" }, { name: "Fraz" }]
+
+}
+
+let reducers = combineReducers({userSection})
+
+let store = createStore(reducers);
+
 
 export default store;
+
+
+//we used combineReducer when we have more than one section or reducer in our store

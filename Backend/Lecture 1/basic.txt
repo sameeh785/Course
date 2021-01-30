@@ -1,0 +1,21 @@
+// CommonJS format
+let express = require('express')
+
+let app = express();
+
+app.get('/', (req, res)=>{
+    // res.end("this is sgome")
+});
+
+app.get("/login", (req, res) => {
+
+    res.sendfile('./data.mp4');
+
+    // res.end("asdas");
+    // res.json({ name: "Gamica" })
+
+});
+
+app.listen(8080, function () {
+    console.log("Start starting");
+})

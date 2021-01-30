@@ -1,5 +1,6 @@
 import React , {useState} from "react";
 import  "./signup.css";
+import store from "../../store/store";
 export default function Displayrow(props){
 return <div> 
 
