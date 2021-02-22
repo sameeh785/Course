@@ -52,28 +52,39 @@
         salary = 0
     }
 
-    class Student extends Person {
+    class Student  {
         // roll = ""
+        constructor(fee,section,ro){
+            this.fee = fee;
+            this.section = section;
+            this.roll = ro
+        }
         fees = ""
         section = ""
 
         get roll() {
+            console.log('sa')
             return this._roll;
         }
 
         set roll(newRoll) {
 
             if (isNaN(newRoll)) {
+                console.log("1")
                 throw "Enter valid error";
             } else {
                 this._roll = newRoll;
+                console.log("1")
+
             }
 
         }
 
     }
 
-    let s1 = new Student()
+    let s1 = new Student(1212,"sa","12")
+    // s1.roll  = 12;
+    console.log(s1, s1.roll)
 
 
     // let t1 = new Teacher()

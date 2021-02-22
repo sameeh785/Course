@@ -1,0 +1,265 @@
+import { Route, BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import store from './store/store';
+import './App.css';
+import { func } from 'prop-types';
+import Login from './login';
+import Signup from './signup';
+import Dashboard from './dashboard';
+import { checkSession } from './store/actions/auth';
+
+export default function App(props) {
+
+    useEffect(() => {
+
+        checkSession({
+            token: localStorage.getItem('token')
+        }, (resp) => {            
+
+            store.dispatch({
+                history: props.history,
+                type: "USER_LOGIN",
+                user: resp.data.user
+            });
+
+        })
+
+    }, []);
+
+    return <BrowserRouter>
+        <Provider store={store}>
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+            <Route path="/dashboard" component={Dashboard} />
+        </Provider>
+    </BrowserRouter>
+
+
+}
+
+
+
+
+
+******************************************
+
+
+
+
+app.post("/session", async (req, res) => {
+
+     try{
+
+        console.log(20);
+        let data = jwt.verify(req.body.token, "cat says miaooon");
+        let user = await Student.findById(data._id);
+        res.json({user:user});
+
+     }catch(e){
+
+        console.log(e);
+
+     }
+
+});
+
+
+app.post("/login", async (req, res) => {
+
+    let targetUser = await Student.findOne({
+        name: req.body.name,
+        password: req.body.password
+    });
+
+    jwt.sign({
+        name: targetUser.name,
+        _id: targetUser._id
+    }, "cat says miaooon", {
+            expiresIn: '7d'
+        }, (err, token) => {
+
+            res.json({
+                token: token,
+                user: targetUser
+            });
+
+        })
+
+});
+
+
+
+
+****************************************
+
+
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import history from './../history';
+
+import thunk from 'redux-thunk';
+
+let initialUserData = {
+    users: [],
+    currentUser: {}
+}
+
+function usersSection(state = initialUserData, action) {
+
+    state = {...state};
+
+    if (action.type == "USER_ADDING") {
+        state.users.push({ name: action.name })
+    } else if (action.type == "USER_DELETE") {
+        state.users.splice(action.xIndex, 1)
+    } else if (action.type == "USER_LOGIN") {
+
+
+        state.currentUser = action.user;
+        // setTimeout(()=>{
+
+          history.push('/dashboard')
+
+        // })
+
+
+} else if (action.type == "USER_LOGOUT") {
+    state.currentUser = {};
+    
+}
+
+return state;
+
+}
+
+
+let allSections = combineReducers({ usersSection, productsSection });
+
+
+let myStore = createStore(allSections,{}, applyMiddleware(thunk));
+
+export default myStore;
+
+
+**************************
+
+
+// import TransactionForm from './components/TransactionForm';
+// import NewTransactions from './components/Transactions';
+import React from 'react';
+import { Provider, connect } from 'react-redux';
+import store from './store/store';
+import Axios from 'axios';
+import {Redirect} from 'react-router-dom';
+
+// class MyComponent extends React.Component {
+
+//     componentWillUnmount = () => {
+
+//         console.log(this.props.cItem);
+
+//     }
+
+//     render() {
+
+//         return <li onClick={() => {
+
+//             this.props.onDelete(this.props.index);
+
+//         }}>{this.props.cItem}</li>;
+
+//     }
+
+// }
+
+
+class Dashboard extends React.Component {
+
+    state = {
+        data: ['FSD', "LHR", "KHU", "QTA"]
+    };
+
+    constructor() {
+        super();
+
+
+
+
+    }
+
+    componentDidUpdate = () => {
+
+        console.log(33);
+        // console.log(window.$('#test').html())
+
+    }
+
+    componentDidMount = () => {
+
+        // window.$("#newCode").draggable();
+
+    }
+
+    onDelete = (index) => {
+
+        this.state.data.splice(index, 1);
+        this.setState(this.state);
+
+    }
+
+    render() {
+
+
+
+        return localStorage.getItem('token') ? <div>
+
+            <button onClick={() => {
+
+
+                localStorage.removeItem("token");
+                store.dispatch({
+                    type:"USER_LOGOUT"
+                })
+                this.props.history.push('/login')
+
+
+
+            }}>Logout</button>
+
+            {/* <ul>
+                {this.state.data.map((item, index) => {
+
+                    return <MyComponent index={index} onDelete={this.onDelete} cItem={item} />
+
+                })}
+
+            </ul> */}
+
+            <button onClick={() => {
+
+                this.setState({ name: "FSD" });
+                console.log(window.$('#test').html())
+
+            }}>Click me</button>
+
+            <h1>Welcome to Gamica Bank of Pakistan, {this.props.abc.currentUser.name}</h1>
+
+
+            <div style={{ width: '100px', height: '100px', backgroundColor: "green" }} id="newCode">
+            </div>
+
+
+        </div> : <Redirect to="/login" />
+
+    }
+
+
+}
+
+export default connect((store) => {
+    return {
+        city: 20,
+        abc: store.usersSection
+    }
+
+})(Dashboard)

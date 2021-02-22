@@ -1,64 +1,81 @@
-<div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
 
-    <section>
+        <section>
+    
+        <header>
+    
+            <article>
+                <footer>
+    
+    
+                    <b>
+    
+                        <label for="">
+    
+                            <header>
+    
+                                <aside id="code">
+                                    some code in here
+                                </aside>
+    
+    
+                            </header>
+    
+                        </label>
+    
+                    </b>
+    
+                </footer>
+            </article>
+    
+        </header>
+    
+        </section>
+    
+    </div>
+    
+    
+</body>
+</html>
 
-    <header>
-
-        <article>
-            <footer>
 
 
-                <b>
-
-                    <label for="">
-
-                        <header>
-
-                            <aside id="code">
-                                some code in here
-                            </aside>
-
-
-                        </header>
-
-                    </label>
-
-                </b>
-
-            </footer>
-        </article>
-
-    </header>
-
-    </section>
-
-</div>
 
 
 <script>
 
 
-    let tag = code;
-
-    do {
-
-        tag = tag.parentNode;
-
-    } while (tag != null && tag.nodeName != "SECTION")
-
-    if (tag == null) {
-        console.log("Sorry g");
-    }else{
-        console.log(tag);
-    }
-
     // let tag = code;
 
-    // for (let i = 0; tag.nodeName != "SECTION"; i++) {
+    // do {
 
     //     tag = tag.parentNode;
 
+    // } while (tag != null && tag.nodeName != "SECTION")
+
+    // if (tag == null) {
+    //     console.log("Sorry g");
+    // }else{
+    //     console.log(tag);
     // }
+
+    let tag = code;
+
+    for (let i = 0; tag != null; i++) {
+
+        tag = tag.parentNode;
+        console.log(tag)
+
+    }
 
     // console.log(tag);
 

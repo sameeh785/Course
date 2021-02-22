@@ -96,7 +96,9 @@
           let dishes2 = ["Biryani","Jalfrezi","White Karahi","Paasta"];
         let orderedDishes = [];
         let stringArray = localStorage.getItem("fDishes");
+        console.log(stringArray)
         orderedDishes = JSON.parse(stringArray) || [];
+        console.log(orderedDishes)
         if(orderedDishes){
 
         for (let dish of orderedDishes) {

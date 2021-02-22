@@ -23,26 +23,34 @@ function first(){
              if(  event.target.id == "apple"){
           let v = document.createElement('img');
           v.src ="./th.jpg"
+          v.onclick = function(){
+             v.remove();
+
+                   }
           sami.appendChild(v);
          let u = document.createElement('br')
          sami.appendChild(u);
              }
              if(event.target.id == "banana"){
-                let v = document.createElement('img');
-          v.src ="./banana.jpg"
-          v.style.width = "200px"
-          sami2.appendChild(v);
+                let b = document.createElement('img');
+          b.src ="./banana.jpg"
+          b.onclick = function(){
+             b.remove();
+
+                   }
+          b.style.width = "200px"
+          sami2.appendChild(b);
          let u = document.createElement('br')
          sami2.appendChild(u);
              }
       
-let k = document.getElementsByTagName('img')[0];
-k.onclick = rem;
+// let k = document.getElementsByTagName('img')[0];
+// k.onclick = rem;
       }
-function rem(e){
-    e.target.remove();
+// function rem(e){
+//     e.target.remove();
 
-}
+// }
     </script>
 </body>
 </html>

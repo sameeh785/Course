@@ -75,18 +75,7 @@
     
     <script>
 
-        let keys = {
-            say:function(){
-
-                alert(20);
-
-            },
-            educaton:{
-                exams:{
-                    marks:20
-                }
-            }
-        };
+        let keys = []
 
         function moveShip() {
 
@@ -104,7 +93,7 @@
             //top
             if (keys[38] == true) {
 
-                if (spaceShip.style.top != "0px") {
+                if (spaceShip.style.top > "0px") {
                     spaceShip.style.top = (parseInt(spaceShip.style.top || 0) - 5) + 'px';
                 }
                 let left =  document.getElementById('to');
@@ -114,8 +103,9 @@
 
             //right
             if (keys[39] == true) {
+                console.log(spaceShip.offsetWidth)
                 let currentRight = parseInt(spaceShip.style.left || 0) + spaceShip.offsetWidth;
-
+                
                 if (currentRight < spaceapp.offsetWidth) {
 
                     spaceShip.style.left = (parseInt(spaceShip.style.left || 0) + 5) + 'px';
@@ -143,6 +133,7 @@
         }
 
         document.body.onkeydown = function (evt) {
+            console.log(evt.keyCode)
 
 keys[evt.keyCode] = true;
 moveShip()

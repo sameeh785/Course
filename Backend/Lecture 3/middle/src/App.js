@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { Provider, connect } from 'react-redux'
-import mStore from './store/store';
+// import mStore from './store/store';
 
 import history from './createHistory'
 import { Route, Router } from 'react-router-dom';
